@@ -2,7 +2,7 @@ package com.github.highd120.item;
 
 import java.util.List;
 
-import com.github.highd120.ExtraWarpConfig;
+import com.github.highd120.BotaniaExConfig;
 import com.github.highd120.gui.GuiWarp;
 import com.github.highd120.util.EnergyUtil;
 import com.github.highd120.util.gui.GuiManager;

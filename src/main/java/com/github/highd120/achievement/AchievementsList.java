@@ -1,6 +1,6 @@
 package com.github.highd120.achievement;
 
-import com.github.highd120.KeyConfigEditer;
+import com.github.highd120.BotaniaExMain;
 import com.github.highd120.item.ItemList;
 import com.github.highd120.item.ShotSwordItem;
 
@@ -16,9 +16,12 @@ public class AchievementsList {
 	private static int pageIndex;
 	private static AchievementPage page;
 	public static void init() {
-		shotSword = new Achievement("achievement.extrawarp:shotsword", "extrawarp:shotsword", 0, 0, new ItemStack(ItemList.shotSwordItem), null);
+		shotSword = new Achievement(
+				"achievement." + BotaniaExMain.MOD_ID +":shotsword",
+				BotaniaExMain.MOD_ID +":shotsword",
+				0, 0, new ItemStack(ItemList.shotSwordItem), null);
 		pageIndex = AchievementPage.getAchievementPages().size();
-		page = new AchievementPage(KeyConfigEditer.MOD_NAME, new Achievement[] {
+		page = new AchievementPage(BotaniaExMain.MOD_NAME, new Achievement[] {
 			shotSword
 		});
 		AchievementPage.registerAchievementPage(page);

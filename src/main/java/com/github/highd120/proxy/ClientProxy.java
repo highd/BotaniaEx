@@ -1,6 +1,6 @@
 package com.github.highd120.proxy;
 
-import com.github.highd120.KeyConfigEditer;
+import com.github.highd120.BotaniaExMain;
 import com.github.highd120.block.SubTileBindSword;
 import com.github.highd120.block.SubTileFallingBlock;
 import com.github.highd120.entity.EntitySword;
@@ -17,11 +17,8 @@ import vazkii.botania.api.BotaniaAPIClient;
 public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerRenderers() {
-        BotaniaAPIClient.registerSubtileModel(SubTileBindSword.NAME,
-                new ModelResourceLocation(new ResourceLocation(KeyConfigEditer.MOD_ID, SubTileBindSword.NAME), "normal"),
-                new ModelResourceLocation(new ResourceLocation(KeyConfigEditer.MOD_ID, SubTileBindSword.NAME), "inventory"));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySword.class, new RenderEntitySwordFactory());
-		BotaniaAPIClient.registerSubtileModel(SubTileBindSword.class, new ModelResourceLocation("extrawarp:" + SubTileBindSword.NAME));
-		BotaniaAPIClient.registerSubtileModel(SubTileFallingBlock.class, new ModelResourceLocation("extrawarp:" + SubTileFallingBlock.NAME));
+		BotaniaAPIClient.registerSubtileModel(SubTileBindSword.class, new ModelResourceLocation(BotaniaExMain.MOD_ID + ":" + SubTileBindSword.NAME));
+		BotaniaAPIClient.registerSubtileModel(SubTileFallingBlock.class, new ModelResourceLocation(BotaniaExMain.MOD_ID + ":" + SubTileFallingBlock.NAME));
 	}
 }

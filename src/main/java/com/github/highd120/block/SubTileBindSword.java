@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import org.lwjgl.opengl.GL11;
 
-import com.github.highd120.KeyConfigEditer;
+import com.github.highd120.BotaniaExMain;
 import com.github.highd120.item.ItemList;
 import com.github.highd120.util.CollectionUtil;
 import com.github.highd120.util.Constant;

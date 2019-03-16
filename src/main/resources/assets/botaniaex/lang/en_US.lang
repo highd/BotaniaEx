@@ -1,9 +1,9 @@
-item.extrawarp.warp.name=Warp orb
-item.extrawarp.shot_sword.name=Shot Sword
+item.botaniaex.warp.name=Warp orb
+item.botaniaex.shot_sword.name=Shot Sword
 tile.botania:flower.bindsword.name=Bind Sword
 tile.botania:flower.bindsword.reference=Test Messeage.
 tile.botania:flower.fallingblock.name=Falling Block Generater
 tile.botania:flower.fallingblock.reference=Test Messeage.
-item.extrawarp.rune.name=Rune of True
-achievement.extrawarp:shotsword=Archivement
-achievement.extrawarp:shotsword.desc=Archivement Desc.
+item.botaniaex.rune.name=Rune of True
+achievement.botaniaex:shotsword=Archivement
+achievement.botaniaex:shotsword.desc=Archivement Desc.

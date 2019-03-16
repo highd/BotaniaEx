@@ -4,14 +4,14 @@
     "normal": [{
       "model": "botania:shapes/cross_tinted",
       "textures": {
-        "cross": "extrawarp:blocks/fallingblock"
+        "cross": "botaniaex:blocks/fallingblock"
       }
     }],
     "inventory": [{
       "model": "builtin/generated",
       "transform": "forge:default-item",
       "textures": {
-        "layer0": "extrawarp:blocks/fallingblock"
+        "layer0": "botaniaex:blocks/fallingblock"
       }
     }]
   }

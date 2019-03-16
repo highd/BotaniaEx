@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
-import com.github.highd120.KeyConfigEditer;
+import com.github.highd120.BotaniaExMain;
 import com.github.highd120.block.SubTileBindSword;
 import com.github.highd120.entity.EntitySword;
 
@@ -33,8 +33,8 @@ public class ItemList {
 	    			String name = field.getAnnotation(BasicItem.class).name();
 	    			Item item = (Item)field.getType().getDeclaredConstructor().newInstance();
 					field.set(null, item);
-			        GameRegistry.register(item, new ResourceLocation(KeyConfigEditer.MOD_ID, name));
-			        item.setUnlocalizedName(KeyConfigEditer.MOD_ID + "." + name);
+			        GameRegistry.register(item, new ResourceLocation(BotaniaExMain.MOD_ID, name));
+			        item.setUnlocalizedName(BotaniaExMain.MOD_ID + "." + name);
 		            if(event.getSide().isClient()){
 		                ModelLoader.setCustomModelResourceLocation((Item)item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 		            }
@@ -42,8 +42,8 @@ public class ItemList {
 	    			IRegiser item = (IRegiser)field.getType().getDeclaredConstructor().newInstance();
 					field.set(null, item);
 					String name = item.getName();
-			        GameRegistry.register((Item)item, new ResourceLocation(KeyConfigEditer.MOD_ID, name));
-			        ((Item)item).setUnlocalizedName(KeyConfigEditer.MOD_ID + "." + name);
+			        GameRegistry.register((Item)item, new ResourceLocation(BotaniaExMain.MOD_ID, name));
+			        ((Item)item).setUnlocalizedName(BotaniaExMain.MOD_ID + "." + name);
 		            if(event.getSide().isClient()){
 		                ModelLoader.setCustomModelResourceLocation((Item)item, 0, new ModelResourceLocation(((Item)item).getRegistryName(), "inventory"));
 		            }

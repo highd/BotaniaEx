@@ -8,7 +8,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import com.github.highd120.ExtraWarpConfig;
+import com.github.highd120.BotaniaExConfig;
 import com.github.highd120.util.EnergyUtil;
 import com.github.highd120.util.gui.Gui;
 import com.github.highd120.util.gui.GuiField;
@@ -90,7 +90,7 @@ public class GuiWarp extends GuiScreen {
 			(positon1.getX() - positon2.getX()) * (positon1.getX() - positon2.getX()) +
 			(positon1.getY() - positon2.getY()) * (positon1.getY() - positon2.getY()) +
 			(positon1.getZ() - positon2.getZ()) * (positon1.getZ() - positon2.getZ())
-		)*ExtraWarpConfig.useRf;
+		)*BotaniaExConfig.useRf;
     }
     private int getCost() {
     	return getWarpPositon().map(pos->calculateCost(pos)).orElse(0);

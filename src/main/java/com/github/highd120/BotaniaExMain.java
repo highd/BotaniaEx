@@ -38,14 +38,14 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.subtile.SubTileEntity;
 
-@Mod(modid = KeyConfigEditer.MOD_ID, version = KeyConfigEditer.VERSION, clientSideOnly = true)
-public class KeyConfigEditer {
-	public static final String MOD_ID = "extrawarp";
-    public static final String MOD_NAME = "Extra Warp";
+@Mod(modid = BotaniaExMain.MOD_ID, version = BotaniaExMain.VERSION, clientSideOnly = true)
+public class BotaniaExMain {
+	public static final String MOD_ID = "botaniaex";
+    public static final String MOD_NAME = "BotaniaEx";
 	public static final String VERSION = "1.10.2";
 
 	@Instance
-	public static KeyConfigEditer instance = new KeyConfigEditer();
+	public static BotaniaExMain instance = new BotaniaExMain();
 
 	@SidedProxy(clientSide = "com.github.highd120.proxy.ClientProxy",
 			serverSide = "com.github.highd120.proxy.CommonProxy")
@@ -54,7 +54,7 @@ public class KeyConfigEditer {
 	@EventHandler
     public void preInit(FMLPreInitializationEvent event){
 		ItemList.init(event);
-		EntityRegistry.registerModEntity(EntitySword.class, "extrawarp.sword", 1, this, 128, 5, true);
+		EntityRegistry.registerModEntity(EntitySword.class, MOD_ID + "sword", 1, this, 128, 5, true);
 		BotaniaAPI.registerSubTile(SubTileBindSword.NAME, SubTileBindSword.class);
 		BotaniaAPI.addSubTileToCreativeMenu(SubTileBindSword.NAME);
 		BotaniaAPI.registerSubTile(SubTileFallingBlock.NAME, SubTileFallingBlock.class);

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "extrawarp:items/rune"
+    "layer0": "botaniaex:items/warp_orb"
   }
 }

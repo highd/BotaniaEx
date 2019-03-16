@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "extrawarp:items/shot_sword"
+    "layer0": "botaniaex:items/shot_sword"
   }
 }

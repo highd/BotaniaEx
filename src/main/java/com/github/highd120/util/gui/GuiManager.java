@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.github.highd120.KeyConfigEditer;
+import com.github.highd120.BotaniaExMain;
 import com.github.highd120.gui.GuiWarp;
 import com.google.common.reflect.ClassPath;
 
@@ -50,7 +50,7 @@ public class GuiManager implements IGuiHandler {
 		}
 	}
 	public static void playerOpenGui(EntityPlayer player, World world, Class<?> clazz) {
-		player.openGui(KeyConfigEditer.instance, classList.indexOf(clazz), world, (int)player.posX, (int)player.posY, (int)player.posZ);
+		player.openGui(BotaniaExMain.instance, classList.indexOf(clazz), world, (int)player.posX, (int)player.posY, (int)player.posZ);
 	}
 	private static boolean isHaveAnnotation(Annotation[] annotations,Class clazz) {
 		return Arrays.stream(annotations).anyMatch(an->an.annotationType().equals(clazz));
