@@ -7,7 +7,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import com.github.highd120.gui.GuiWarp.WarpButton;
 import com.github.highd120.util.EnergyUtil;
 import com.github.highd120.util.gui.Gui;
 import com.github.highd120.util.gui.InputElement;

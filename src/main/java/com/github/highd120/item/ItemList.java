@@ -19,7 +19,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import vazkii.botania.api.BotaniaAPI;
 
 public class ItemList {
-    public static WarpItem warpItem;
     public static ShotSwordItem shotSwordItem;
 
     @BasicItem(name = "rune")

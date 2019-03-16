@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.junit.Test;
 
-import com.github.highd120.gui.GuiWarp;
 import com.github.highd120.util.gui.GuiManager;
 
 import net.minecraft.entity.player.EntityPlayer;

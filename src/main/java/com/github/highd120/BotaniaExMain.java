@@ -7,7 +7,6 @@ import com.github.highd120.block.SubTileFallingBlock;
 import com.github.highd120.entity.EntitySword;
 import com.github.highd120.item.ItemList;
 import com.github.highd120.item.ShotSwordItem;
-import com.github.highd120.item.WarpItem;
 import com.github.highd120.proxy.CommonProxy;
 import com.github.highd120.util.EnergyUtil;
 import com.github.highd120.util.NBTTagUtil;
@@ -74,16 +73,6 @@ public class BotaniaExMain {
 		compound.setString(SubTileEntity.TAG_TYPE, SubTileBindSword.NAME);
 		BotaniaAPI.registerPetalRecipe(flowerStack, "petalGreen", "petalGreen", "petalBlack", "runeEnvyB", "runePrideB", "redstoneRoot", "elvenPixieDust");
         proxy.registerRenderers();
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemList.warpItem, 1, 0), new Object[] {
-				"XXX",
-				"ZYZ",
-				"XXX",
-				Character.valueOf('X'),
-				new ItemStack(Items.DIAMOND, 1, 0),
-				Character.valueOf('Y'),
-				new ItemStack(Items.ENDER_PEARL, 1, 0),
-				Character.valueOf('Z'),
-				new ItemStack(Items.NETHER_STAR, 1, 0) }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemList.shotSwordItem, 1, 0), new Object[] {
 				" X ",
 				"ZYZ",

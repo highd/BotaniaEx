@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.github.highd120.BotaniaExMain;
-import com.github.highd120.gui.GuiWarp;
 import com.google.common.reflect.ClassPath;
 
 import net.minecraft.entity.player.EntityPlayer;
