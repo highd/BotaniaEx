@@ -37,7 +37,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.subtile.SubTileEntity;
 
-@Mod(modid = BotaniaExMain.MOD_ID, version = BotaniaExMain.VERSION, clientSideOnly = true)
+@Mod(modid = BotaniaExMain.MOD_ID, version = BotaniaExMain.VERSION, dependencies = "required-after:Botania")
 public class BotaniaExMain {
 	public static final String MOD_ID = "botaniaex";
     public static final String MOD_NAME = "BotaniaEx";
