@@ -58,11 +58,8 @@ public class BotaniaExMain {
 		BotaniaAPI.addSubTileToCreativeMenu(SubTileBindSword.NAME);
 		BotaniaAPI.registerSubTile(SubTileFallingBlock.NAME, SubTileFallingBlock.class);
 		BotaniaAPI.addSubTileToCreativeMenu(SubTileFallingBlock.NAME);
-		BotaniaAPI.registerRuneAltarRecipe(new ItemStack(ItemList.runeItem), 5000,
-				"runeWaterB", "runeFireB", "runeEarthB", "runeAirB",
-				"runeSpringB", "runeSummerB", "runeAutumnB", "runeWinterB",
-				"runeManaB", "runeLustB", "runeGluttonyB", "runeGreedB",
-				"runeSlothB", "runeWrathB", "runeEnvyB", "runePrideB");
+		RecipeList.init();
+
 		Item flower = GameData.getItemRegistry().getObject(new ResourceLocation("botania","specialFlower"));
 		ItemStack flowerStack = new ItemStack(flower);
 		NBTTagCompound compound = flowerStack.getTagCompound();
@@ -89,6 +86,7 @@ public class BotaniaExMain {
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiManager());
+		Lexicon.init();
 	}
 
     @EventHandler

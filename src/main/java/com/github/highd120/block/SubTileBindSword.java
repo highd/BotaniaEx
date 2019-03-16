@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.lwjgl.opengl.GL11;
 
 import com.github.highd120.BotaniaExMain;
+import com.github.highd120.Lexicon;
 import com.github.highd120.item.ItemList;
 import com.github.highd120.util.CollectionUtil;
 import com.github.highd120.util.Constant;
@@ -30,6 +31,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.sound.BotaniaSoundEvents;
 import vazkii.botania.api.subtile.RadiusDescriptor;
 import vazkii.botania.api.subtile.SubTileFunctional;
@@ -166,5 +168,10 @@ public class SubTileBindSword extends SubTileFunctional {
 	public void writeToPacketNBT(NBTTagCompound cmp) {
 		super.writeToPacketNBT(cmp);
 		cmp.setBoolean(NAME, isDisassemble);
+	}
+
+	@Override
+	public LexiconEntry getEntry() {
+		return Lexicon.bindSwordEntry;
 	}
 }
