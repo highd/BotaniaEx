@@ -59,27 +59,7 @@ public class BotaniaExMain {
 		BotaniaAPI.registerSubTile(SubTileFallingBlock.NAME, SubTileFallingBlock.class);
 		BotaniaAPI.addSubTileToCreativeMenu(SubTileFallingBlock.NAME);
 		RecipeList.init();
-
-		Item flower = GameData.getItemRegistry().getObject(new ResourceLocation("botania","specialFlower"));
-		ItemStack flowerStack = new ItemStack(flower);
-		NBTTagCompound compound = flowerStack.getTagCompound();
-		if (compound == null) {
-			compound = new NBTTagCompound();
-			flowerStack.setTagCompound(compound);
-		}
-		compound.setString(SubTileEntity.TAG_TYPE, SubTileBindSword.NAME);
-		BotaniaAPI.registerPetalRecipe(flowerStack, "petalGreen", "petalGreen", "petalBlack", "runeEnvyB", "runePrideB", "redstoneRoot", "elvenPixieDust");
         proxy.registerRenderers();
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemList.shotSwordItem, 1, 0), new Object[] {
-				" X ",
-				"ZYZ",
-				"   ",
-				Character.valueOf('X'),
-				new ItemStack(Items.DIAMOND_SWORD, 1, 0),
-				Character.valueOf('Y'),
-				new ItemStack(ItemList.runeItem, 1, 0),
-				Character.valueOf('Z'),
-				new ItemStack(Items.STICK, 1, 0) }));
 		AchievementsList.init();
     }
 
