@@ -9,6 +9,9 @@ tile.botania:flower.bindsword.reference=Test Messeage.
 tile.botania:flower.fallingblock.name=Falling Block Generater
 tile.botania:flower.fallingblock.reference=Test Messeage.
 
+tile.botania:flower.createmanafluid.name=Mana Converter
+tile.botania:flower.createmanafluid.reference=Test Messeage.
+
 achievement.botaniaex:shotsword=Archivement
 achievement.botaniaex:shotsword.desc=Archivement Desc.
 

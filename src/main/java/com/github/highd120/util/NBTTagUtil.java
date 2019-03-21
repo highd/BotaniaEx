@@ -13,6 +13,13 @@ public class NBTTagUtil {
         return compound.getCompoundTag(key);
 	}
 
+	public static Optional<String> getString(String key, ItemStack stack) {
+        NBTTagCompound compound = stack.getTagCompound();
+        if (compound == null) return Optional.empty();
+        if (!compound.hasKey(key)) return Optional.empty();
+		return Optional.ofNullable(compound.getString(key));
+	}
+
 	public static void setCompound(String key, ItemStack stack, NBTTagCompound tag) {
         NBTTagCompound compound = stack.getTagCompound();
         if(compound == null) {

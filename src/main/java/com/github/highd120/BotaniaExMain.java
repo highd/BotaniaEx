@@ -3,6 +3,7 @@ package com.github.highd120;
 import com.github.highd120.achievement.AchievementTriggerer;
 import com.github.highd120.achievement.AchievementsList;
 import com.github.highd120.block.SubTileBindSword;
+import com.github.highd120.block.SubTileCreateManaFluid;
 import com.github.highd120.block.SubTileFallingBlock;
 import com.github.highd120.entity.EntitySword;
 import com.github.highd120.item.ItemList;
@@ -34,6 +35,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameData;
@@ -75,6 +77,8 @@ public class BotaniaExMain {
 		BotaniaAPI.addSubTileToCreativeMenu(SubTileBindSword.NAME);
 		BotaniaAPI.registerSubTile(SubTileFallingBlock.NAME, SubTileFallingBlock.class);
 		BotaniaAPI.addSubTileToCreativeMenu(SubTileFallingBlock.NAME);
+		BotaniaAPI.registerSubTile(SubTileCreateManaFluid.NAME, SubTileCreateManaFluid.class);
+		BotaniaAPI.addSubTileToCreativeMenu(SubTileCreateManaFluid.NAME);
 		RecipeList.init();
         proxy.registerRenderers();
 		AchievementsList.init();
@@ -95,5 +99,11 @@ public class BotaniaExMain {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent e) {
+    }
+
+
+    @EventHandler
+    public void serverLoad(FMLServerStartingEvent event) {
+        event.registerServerCommand(new DebugCommand());
     }
 }
