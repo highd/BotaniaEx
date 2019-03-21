@@ -1,5 +1,7 @@
 item.botaniaex.shot_sword.name=Shot Sword
 item.botaniaex.rune.name=Rune of True
+fluid.mana_fluid2=Mana Fluid
+tile.botaniaex:mana_fluid2.name=Mana Fluid
 
 tile.botania:flower.bindsword.name=Bind Sword
 tile.botania:flower.bindsword.reference=Test Messeage.

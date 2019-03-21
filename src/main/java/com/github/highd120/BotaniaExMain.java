@@ -12,6 +12,8 @@ import com.github.highd120.util.EnergyUtil;
 import com.github.highd120.util.NBTTagUtil;
 import com.github.highd120.util.gui.GuiManager;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -22,6 +24,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -50,6 +55,18 @@ public class BotaniaExMain {
 			serverSide = "com.github.highd120.proxy.CommonProxy")
 	public static CommonProxy proxy;
 
+    public static Block manaFluidBlock;
+
+    public static Fluid manaFluid = new Fluid("mana_fluid2",
+    		new ResourceLocation(BotaniaExMain.MOD_ID + ":blocks/mana_fluid_still"),
+    		new ResourceLocation(BotaniaExMain.MOD_ID + ":blocks/mana_fluid_flow"));
+
+    public static ModelResourceLocation manaFluidModelLocation = new ModelResourceLocation(BotaniaExMain.MOD_ID + ":mana_fluid_block", "fluid");
+
+    static {
+        FluidRegistry.enableUniversalBucket();
+    }
+
 	@EventHandler
     public void preInit(FMLPreInitializationEvent event){
 		ItemList.init(event);
@@ -61,6 +78,13 @@ public class BotaniaExMain {
 		RecipeList.init();
         proxy.registerRenderers();
 		AchievementsList.init();
+        FluidRegistry.registerFluid(manaFluid);
+        manaFluidBlock = new BlockFluidClassic(manaFluid, Material.WATER);
+        manaFluidBlock.setUnlocalizedName(MOD_ID+":mana_fluid");
+        manaFluid.setBlock(manaFluidBlock);
+        GameRegistry.registerBlock(manaFluidBlock, MOD_ID+":mana_fluid_block");
+        proxy.registerFluid();
+        FluidRegistry.addBucketForFluid(BotaniaExMain.manaFluid);
     }
 
 	@Mod.EventHandler
