@@ -44,6 +44,16 @@ repositories {
         name "botania"
         url "https://jitpack.io"
     }
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "modmaven.k-4u.nl"
+    }
 }
 
 dependencies {
@@ -68,8 +78,11 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    compile 'com.google.guava:guava:27.0.1-jre'
     provided 'org.projectlombok:lombok:1.16.4'
+    // compile against the JEI API but do not include it at runtime
+    deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    // at runtime, use the full JEI jar
+    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
 
 }
 
@@ -99,4 +112,8 @@ eclipse {
         plusConfigurations += [configurations.provided]
         noExportConfigurations += [configurations.provided]
     }
+}
+javadoc {
+    options.charSet = 'UTF-8'
+    options.encoding = 'UTF-8'
 }

@@ -4,6 +4,7 @@ import com.github.highd120.achievement.AchievementsList;
 import com.github.highd120.block.SubTileBindSword;
 import com.github.highd120.block.SubTileCreateManaFluid;
 import com.github.highd120.block.SubTileFallingBlock;
+import com.github.highd120.block.injection.InjectionRecipe;
 import com.github.highd120.entity.EntitySword;
 import com.github.highd120.item.ItemList;
 import com.github.highd120.proxy.CommonProxy;
@@ -77,6 +78,7 @@ public class BotaniaExMain {
         BotaniaAPI.registerSubTile(SubTileCreateManaFluid.NAME, SubTileCreateManaFluid.class);
         BotaniaAPI.addSubTileToCreativeMenu(SubTileCreateManaFluid.NAME);
         RecipeList.init();
+        InjectionRecipe.init();
         proxy.registerRenderers();
         AchievementsList.init();
         FluidRegistry.registerFluid(manaFluid);
