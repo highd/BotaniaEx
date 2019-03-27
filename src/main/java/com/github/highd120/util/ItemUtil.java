@@ -17,7 +17,7 @@ public class ItemUtil {
      * @param stack ドロップさせるアイテム。
      */
     public static void dropItem(World world, BlockPos postion, ItemStack stack) {
-        if (world.isRemote) {
+        if (world.isRemote || stack == null) {
             return;
         }
         EntityItem result = new EntityItem(world, postion.getX(), postion.getY(), postion.getZ(),

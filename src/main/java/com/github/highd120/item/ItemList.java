@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
- * アイテムのリスト。
+  * アイテムのリスト。
  * @author hdgam
  */
 public class ItemList {
@@ -23,7 +23,7 @@ public class ItemList {
     public static Item runeItem;
 
     /**
-     * アイテムの登録。
+            * アイテムの登録。
      * @param event イベント。
      */
     public static void init(FMLPreInitializationEvent event) {

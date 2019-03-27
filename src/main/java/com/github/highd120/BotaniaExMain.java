@@ -1,9 +1,11 @@
 package com.github.highd120;
 
 import com.github.highd120.achievement.AchievementsList;
+import com.github.highd120.block.BlockStand;
 import com.github.highd120.block.SubTileBindSword;
 import com.github.highd120.block.SubTileCreateManaFluid;
 import com.github.highd120.block.SubTileFallingBlock;
+import com.github.highd120.block.TileStand;
 import com.github.highd120.block.injection.InjectionRecipe;
 import com.github.highd120.entity.EntitySword;
 import com.github.highd120.item.ItemList;
@@ -13,6 +15,7 @@ import com.github.highd120.util.gui.GuiManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
@@ -61,6 +64,10 @@ public class BotaniaExMain {
         FluidRegistry.enableUniversalBucket();
     }
 
+    public static BlockStand stand;
+
+    public static ItemBlock standItem;
+
     /**
      * 初期化。
      * @param event イベント。
@@ -79,15 +86,24 @@ public class BotaniaExMain {
         BotaniaAPI.addSubTileToCreativeMenu(SubTileCreateManaFluid.NAME);
         RecipeList.init();
         InjectionRecipe.init();
-        proxy.registerRenderers();
         AchievementsList.init();
         FluidRegistry.registerFluid(manaFluid);
         manaFluidBlock = new BlockFluidClassic(manaFluid, Material.WATER);
         manaFluidBlock.setUnlocalizedName(MOD_ID + ":mana_fluid");
         manaFluid.setBlock(manaFluidBlock);
         GameRegistry.registerBlock(manaFluidBlock, MOD_ID + ":mana_fluid_block");
+
+        stand = new BlockStand();
+        stand.setRegistryName(new ResourceLocation(MOD_ID, "stand"));
+        stand.setUnlocalizedName(MOD_ID + ".stand");
+        GameRegistry.register(stand);
+        standItem = new ItemBlock(stand);
+        standItem.setUnlocalizedName(MOD_ID + ".stand");
+        GameRegistry.register(standItem, stand.getRegistryName());
+        GameRegistry.registerTileEntity(TileStand.class, MOD_ID + ".stand");
         proxy.registerFluid();
         FluidRegistry.addBucketForFluid(BotaniaExMain.manaFluid);
+        proxy.registerRenderers();
     }
 
     @Mod.EventHandler
