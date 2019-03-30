@@ -1,9 +1,6 @@
 package com.github.highd120.proxy;
 
 import com.github.highd120.BotaniaExMain;
-import com.github.highd120.block.SubTileBindSword;
-import com.github.highd120.block.SubTileCreateManaFluid;
-import com.github.highd120.block.SubTileFallingBlock;
 import com.github.highd120.block.TileStand;
 import com.github.highd120.block.TileStandRenderer;
 import com.github.highd120.entity.EntitySword;
@@ -18,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import vazkii.botania.api.BotaniaAPIClient;
 
 public class ClientProxy extends CommonProxy {
     @Override
@@ -26,21 +22,6 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntitySword.class,
                 new RenderEntitySwordFactory());
         ClientRegistry.bindTileEntitySpecialRenderer(TileStand.class, new TileStandRenderer());
-        ModelLoader.setCustomModelResourceLocation(BotaniaExMain.standItem, 0,
-                new ModelResourceLocation(BotaniaExMain.standItem.getRegistryName(), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(BotaniaExMain.injectionItem, 0,
-                new ModelResourceLocation(BotaniaExMain.injectionItem.getRegistryName(),
-                        "inventory"));
-        BotaniaAPIClient.registerSubtileModel(SubTileBindSword.class,
-                new ModelResourceLocation(BotaniaExMain.MOD_ID + ":" + SubTileBindSword.NAME));
-
-        BotaniaAPIClient.registerSubtileModel(SubTileFallingBlock.class,
-                new ModelResourceLocation(BotaniaExMain.MOD_ID + ":" + SubTileFallingBlock.NAME));
-
-        BotaniaAPIClient.registerSubtileModel(SubTileCreateManaFluid.class,
-                new ModelResourceLocation(
-                        BotaniaExMain.MOD_ID + ":" + SubTileCreateManaFluid.NAME));
-
     }
 
     @Override

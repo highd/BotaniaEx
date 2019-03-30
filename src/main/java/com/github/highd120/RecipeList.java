@@ -1,7 +1,9 @@
 package com.github.highd120;
 
 import com.github.highd120.block.SubTileBindSword;
-import com.github.highd120.item.ItemList;
+import com.github.highd120.item.RuneItem;
+import com.github.highd120.item.ShotSwordItem;
+import com.github.highd120.util.item.ItemManager;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -29,13 +31,14 @@ public class RecipeList {
      * レシピの登録。
      */
     public static void init() {
-        runeRecipe = BotaniaAPI.registerRuneAltarRecipe(new ItemStack(ItemList.runeItem), 5000,
+        runeRecipe = BotaniaAPI.registerRuneAltarRecipe(ItemManager.getItemStack(RuneItem.class),
+                5000,
                 "runeWaterB", "runeFireB", "runeEarthB", "runeAirB",
                 "runeSpringB", "runeSummerB", "runeAutumnB", "runeWinterB",
                 "runeManaB", "runeLustB", "runeGluttonyB", "runeGreedB",
                 "runeSlothB", "runeWrathB", "runeEnvyB", "runePrideB");
 
-        shotSwordRecipe = new ShapedOreRecipe(new ItemStack(ItemList.shotSwordItem, 1, 0),
+        shotSwordRecipe = new ShapedOreRecipe(ItemManager.getItemStack(ShotSwordItem.class),
                 new Object[] {
                         " X ",
                         "ZYZ",
@@ -43,7 +46,7 @@ public class RecipeList {
                         Character.valueOf('X'),
                         new ItemStack(Items.DIAMOND_SWORD, 1, 0),
                         Character.valueOf('Y'),
-                        new ItemStack(ItemList.runeItem, 1, 0),
+                        ItemManager.getItemStack(RuneItem.class),
                         Character.valueOf('Z'),
                         new ItemStack(Items.STICK, 1, 0) });
 

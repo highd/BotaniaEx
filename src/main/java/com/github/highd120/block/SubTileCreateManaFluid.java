@@ -9,6 +9,7 @@ import com.github.highd120.BotaniaExMain;
 import com.github.highd120.util.CollectionUtil;
 import com.github.highd120.util.MathUtil;
 import com.github.highd120.util.NbtTagUtil;
+import com.github.highd120.util.subtile.SubTileRegister;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -33,6 +34,7 @@ import vazkii.botania.api.subtile.SubTileFunctional;
  * マナのコンバーター。
  * @author hdgam
  */
+@SubTileRegister(name = SubTileCreateManaFluid.NAME)
 public class SubTileCreateManaFluid extends SubTileFunctional {
     public static final String NAME = "createmanafluid";
     private static final int RANGE = 1;

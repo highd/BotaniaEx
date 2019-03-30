@@ -1,5 +1,7 @@
 package com.github.highd120.block;
 
+import com.github.highd120.util.block.BlockRegister;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -12,6 +14,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+@BlockRegister(name = "stand")
 public class BlockStand extends Block {
 
     /**

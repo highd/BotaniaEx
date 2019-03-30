@@ -1,8 +1,9 @@
 package com.github.highd120;
 
-import com.github.highd120.item.ItemList;
+import com.github.highd120.item.RuneItem;
+import com.github.highd120.item.ShotSwordItem;
+import com.github.highd120.util.item.ItemManager;
 
-import net.minecraft.item.ItemStack;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.lexicon.LexiconEntry;
 
@@ -23,7 +24,7 @@ public class Lexicon {
         runeEntry.setLexiconPages(BotaniaAPI.internalHandler.textPage("lexicon.rune.page0"),
                 BotaniaAPI.internalHandler.runeRecipePage("lexicon.rune.page1",
                         RecipeList.runeRecipe))
-                .setIcon(new ItemStack(ItemList.runeItem));
+                .setIcon(ItemManager.getItemStack(RuneItem.class));
         BotaniaAPI.addEntry(runeEntry, BotaniaAPI.categoryMana);
 
         shotSwordEntry = new LexiconEntry("lexicon.shot_sword.name", BotaniaAPI.categoryMana);
@@ -31,7 +32,7 @@ public class Lexicon {
                 .setLexiconPages(BotaniaAPI.internalHandler.textPage("lexicon.shot_sword.page0"),
                         BotaniaAPI.internalHandler.craftingRecipePage("lexicon.shot_sword.page1",
                                 RecipeList.shotSwordRecipe))
-                .setIcon(new ItemStack(ItemList.shotSwordItem));
+                .setIcon(ItemManager.getItemStack(ShotSwordItem.class));
         BotaniaAPI.addEntry(shotSwordEntry, BotaniaAPI.categoryMana);
 
         bindSwordEntry = new LexiconEntry("lexicon.bindsword.name", BotaniaAPI.categoryMana) {

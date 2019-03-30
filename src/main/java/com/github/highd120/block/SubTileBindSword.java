@@ -7,13 +7,15 @@ import java.util.Optional;
 import org.lwjgl.opengl.GL11;
 
 import com.github.highd120.Lexicon;
-import com.github.highd120.item.ItemList;
+import com.github.highd120.item.ShotSwordItem;
 import com.github.highd120.util.CollectionUtil;
 import com.github.highd120.util.Constant;
 import com.github.highd120.util.EntityUtil;
 import com.github.highd120.util.ItemUtil;
 import com.github.highd120.util.MathUtil;
 import com.github.highd120.util.NbtTagUtil;
+import com.github.highd120.util.item.ItemManager;
+import com.github.highd120.util.subtile.SubTileRegister;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -39,6 +41,7 @@ import vazkii.botania.api.subtile.SubTileFunctional;
  * 剣とアイテムの結合を行う花。
  * @author hdgam
  */
+@SubTileRegister(name = SubTileBindSword.NAME)
 public class SubTileBindSword extends SubTileFunctional {
     public static class LockEntity {
         private Entity entity;
@@ -123,7 +126,7 @@ public class SubTileBindSword extends SubTileFunctional {
     private void disassemble(List<EntityItem> items) {
         CollectionUtil.findIf(items, item -> {
             ItemStack itemStack = item.getEntityItem();
-            if (itemStack.getItem() != ItemList.shotSwordItem) {
+            if (itemStack.getItem() != ItemManager.getItem(ShotSwordItem.class)) {
                 return false;
             }
             Optional<ItemStack> inner = NbtTagUtil.getInnerItem(Constant.SHOT_SWORD_TAG, itemStack);
@@ -146,7 +149,7 @@ public class SubTileBindSword extends SubTileFunctional {
     private void assemble(List<EntityItem> items) {
         EntityItem dropShotSword = CollectionUtil.findIf(items, item -> {
             ItemStack itemStack = item.getEntityItem();
-            if (itemStack.getItem() != ItemList.shotSwordItem) {
+            if (itemStack.getItem() != ItemManager.getItem(ShotSwordItem.class)) {
                 return false;
             }
             Optional<ItemStack> inner = NbtTagUtil.getInnerItem(Constant.SHOT_SWORD_TAG, itemStack);

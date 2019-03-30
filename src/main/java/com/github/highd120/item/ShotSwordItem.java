@@ -7,6 +7,7 @@ import com.github.highd120.achievement.ICraftedAchievement;
 import com.github.highd120.entity.EntitySword;
 import com.github.highd120.util.Constant;
 import com.github.highd120.util.NbtTagUtil;
+import com.github.highd120.util.item.ItemRegister;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +26,8 @@ import vazkii.botania.api.mana.ManaItemHandler;
  * 剣を飛ばすアイテム。
  * @author hdgam
  */
-public class ShotSwordItem extends Item implements IManaUsingItem, ICraftedAchievement, IRegiser {
+@ItemRegister(name = "shot_sword")
+public class ShotSwordItem extends Item implements IManaUsingItem, ICraftedAchievement {
     /**
      * コンストラクター。
      */
@@ -69,10 +71,5 @@ public class ShotSwordItem extends Item implements IManaUsingItem, ICraftedAchie
     @Override
     public Achievement getAchievement() {
         return AchievementsList.shotSword;
-    }
-
-    @Override
-    public String getName() {
-        return "shot_sword";
     }
 }

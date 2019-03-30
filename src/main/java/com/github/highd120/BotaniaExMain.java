@@ -1,17 +1,14 @@
 package com.github.highd120;
 
 import com.github.highd120.achievement.AchievementsList;
-import com.github.highd120.block.BlockStand;
-import com.github.highd120.block.SubTileBindSword;
-import com.github.highd120.block.SubTileCreateManaFluid;
-import com.github.highd120.block.SubTileFallingBlock;
 import com.github.highd120.block.TileStand;
-import com.github.highd120.block.injection.BlockInjection;
 import com.github.highd120.block.injection.InjectionRecipe;
 import com.github.highd120.entity.EntitySword;
-import com.github.highd120.item.ItemList;
 import com.github.highd120.proxy.CommonProxy;
+import com.github.highd120.util.block.BlockManager;
 import com.github.highd120.util.gui.GuiManager;
+import com.github.highd120.util.item.ItemManager;
+import com.github.highd120.util.subtile.SubTileManager;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -32,7 +29,6 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import vazkii.botania.api.BotaniaAPI;
 
 /**
  * メインとなるクラス。
@@ -58,6 +54,8 @@ public class BotaniaExMain {
             new ResourceLocation(BotaniaExMain.MOD_ID + ":blocks/mana_fluid_still"),
             new ResourceLocation(BotaniaExMain.MOD_ID + ":blocks/mana_fluid_flow"));
 
+    public static ItemBlock manaFluidItem;
+
     public static ModelResourceLocation manaFluidModelLocation = new ModelResourceLocation(
             BotaniaExMain.MOD_ID + ":mana_fluid_block", "fluid");
 
@@ -65,58 +63,38 @@ public class BotaniaExMain {
         FluidRegistry.enableUniversalBucket();
     }
 
-    public static BlockStand stand;
-
-    public static ItemBlock standItem;
-
-    public static BlockInjection injection;
-
-    public static ItemBlock injectionItem;
-
     /**
      * 初期化。
      * @param event イベント。
      */
-    @SuppressWarnings("deprecation")
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        ItemList.init(event);
+        BlockManager.init();
+        ItemManager.init(event.getSide().isClient());
+        SubTileManager.init(event.getSide().isClient());
+
         EntityRegistry.registerModEntity(EntitySword.class, MOD_ID + "sword", 1, this, 128, 5,
                 true);
-        BotaniaAPI.registerSubTile(SubTileBindSword.NAME, SubTileBindSword.class);
-        BotaniaAPI.addSubTileToCreativeMenu(SubTileBindSword.NAME);
-        BotaniaAPI.registerSubTile(SubTileFallingBlock.NAME, SubTileFallingBlock.class);
-        BotaniaAPI.addSubTileToCreativeMenu(SubTileFallingBlock.NAME);
-        BotaniaAPI.registerSubTile(SubTileCreateManaFluid.NAME, SubTileCreateManaFluid.class);
-        BotaniaAPI.addSubTileToCreativeMenu(SubTileCreateManaFluid.NAME);
         RecipeList.init();
         InjectionRecipe.init();
         AchievementsList.init();
+
         FluidRegistry.registerFluid(manaFluid);
+
         manaFluidBlock = new BlockFluidClassic(manaFluid, Material.WATER);
+        manaFluidBlock.setRegistryName(new ResourceLocation(MOD_ID, "mana_fluid_block"));
         manaFluidBlock.setUnlocalizedName(MOD_ID + ":mana_fluid");
         manaFluid.setBlock(manaFluidBlock);
-        GameRegistry.registerBlock(manaFluidBlock, MOD_ID + ":mana_fluid_block");
-
-        stand = new BlockStand();
-        stand.setRegistryName(new ResourceLocation(MOD_ID, "stand"));
-        stand.setUnlocalizedName(MOD_ID + ".stand");
-        GameRegistry.register(stand);
-        standItem = new ItemBlock(stand);
-        standItem.setUnlocalizedName(MOD_ID + ".stand");
-        GameRegistry.register(standItem, stand.getRegistryName());
-        GameRegistry.registerTileEntity(TileStand.class, MOD_ID + ".stand");
-
-        injection = new BlockInjection();
-        injection.setRegistryName(new ResourceLocation(MOD_ID, "injection"));
-        injection.setUnlocalizedName(MOD_ID + ".injection");
-        GameRegistry.register(injection);
-        injectionItem = new ItemBlock(injection);
-        injectionItem.setUnlocalizedName(MOD_ID + ".injection");
-        GameRegistry.register(injectionItem, injection.getRegistryName());
-
+        GameRegistry.register(manaFluidBlock);
+        manaFluidItem = new ItemBlock(manaFluidBlock);
+        manaFluidItem.setRegistryName(manaFluidBlock.getRegistryName());
+        manaFluidItem.setUnlocalizedName(manaFluidBlock.getUnlocalizedName());
+        GameRegistry.register(manaFluidItem);
         proxy.registerFluid();
         FluidRegistry.addBucketForFluid(BotaniaExMain.manaFluid);
+
+        GameRegistry.registerTileEntity(TileStand.class, MOD_ID + ".stand");
+
         proxy.registerRenderers();
     }
 

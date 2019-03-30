@@ -1,9 +1,9 @@
 package com.github.highd120.achievement;
 
 import com.github.highd120.BotaniaExMain;
-import com.github.highd120.item.ItemList;
+import com.github.highd120.item.ShotSwordItem;
+import com.github.highd120.util.item.ItemManager;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
@@ -23,9 +23,9 @@ public class AchievementsList {
         shotSword = new Achievement(
                 "achievement." + BotaniaExMain.MOD_ID + ":shotsword",
                 BotaniaExMain.MOD_ID + ":shotsword",
-                0, 0, new ItemStack(ItemList.shotSwordItem), null);
+                0, 0, ItemManager.getItemStack(ShotSwordItem.class), null);
         page = new AchievementPage(BotaniaExMain.MOD_NAME, new Achievement[] {
-            shotSword
+                shotSword
         });
         AchievementPage.registerAchievementPage(page);
         MinecraftForge.EVENT_BUS.register(AchievementTriggerer.class);

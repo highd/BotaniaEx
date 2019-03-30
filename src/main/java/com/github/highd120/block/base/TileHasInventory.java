@@ -59,7 +59,7 @@ public abstract class TileHasInventory extends TileEntityBase {
         });
     }
 
-    protected static class SimpleItemStackHandler extends ItemStackHandler {
+    public static class SimpleItemStackHandler extends ItemStackHandler {
         private final TileHasInventory tile;
 
         public SimpleItemStackHandler(TileHasInventory inv, int limit) {
