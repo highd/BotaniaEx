@@ -6,6 +6,7 @@ import com.github.highd120.block.SubTileBindSword;
 import com.github.highd120.block.SubTileCreateManaFluid;
 import com.github.highd120.block.SubTileFallingBlock;
 import com.github.highd120.block.TileStand;
+import com.github.highd120.block.injection.BlockInjection;
 import com.github.highd120.block.injection.InjectionRecipe;
 import com.github.highd120.entity.EntitySword;
 import com.github.highd120.item.ItemList;
@@ -68,6 +69,10 @@ public class BotaniaExMain {
 
     public static ItemBlock standItem;
 
+    public static BlockInjection injection;
+
+    public static ItemBlock injectionItem;
+
     /**
      * 初期化。
      * @param event イベント。
@@ -101,6 +106,15 @@ public class BotaniaExMain {
         standItem.setUnlocalizedName(MOD_ID + ".stand");
         GameRegistry.register(standItem, stand.getRegistryName());
         GameRegistry.registerTileEntity(TileStand.class, MOD_ID + ".stand");
+
+        injection = new BlockInjection();
+        injection.setRegistryName(new ResourceLocation(MOD_ID, "injection"));
+        injection.setUnlocalizedName(MOD_ID + ".injection");
+        GameRegistry.register(injection);
+        injectionItem = new ItemBlock(injection);
+        injectionItem.setUnlocalizedName(MOD_ID + ".injection");
+        GameRegistry.register(injectionItem, injection.getRegistryName());
+
         proxy.registerFluid();
         FluidRegistry.addBucketForFluid(BotaniaExMain.manaFluid);
         proxy.registerRenderers();

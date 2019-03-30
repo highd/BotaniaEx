@@ -28,10 +28,15 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileStand.class, new TileStandRenderer());
         ModelLoader.setCustomModelResourceLocation(BotaniaExMain.standItem, 0,
                 new ModelResourceLocation(BotaniaExMain.standItem.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(BotaniaExMain.injectionItem, 0,
+                new ModelResourceLocation(BotaniaExMain.injectionItem.getRegistryName(),
+                        "inventory"));
         BotaniaAPIClient.registerSubtileModel(SubTileBindSword.class,
                 new ModelResourceLocation(BotaniaExMain.MOD_ID + ":" + SubTileBindSword.NAME));
+
         BotaniaAPIClient.registerSubtileModel(SubTileFallingBlock.class,
                 new ModelResourceLocation(BotaniaExMain.MOD_ID + ":" + SubTileFallingBlock.NAME));
+
         BotaniaAPIClient.registerSubtileModel(SubTileCreateManaFluid.class,
                 new ModelResourceLocation(
                         BotaniaExMain.MOD_ID + ":" + SubTileCreateManaFluid.NAME));

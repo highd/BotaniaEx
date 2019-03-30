@@ -1,6 +1,8 @@
 package com.github.highd120.jei;
 
-import java.util.stream.IntStream;
+import java.awt.Point;
+
+import javax.annotation.Nonnull;
 
 import com.github.highd120.BotaniaExMain;
 import com.github.highd120.block.injection.InjectionRecipe.Data;
@@ -12,14 +14,14 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class InjectionCategory extends BlankRecipeCategory<InjectionRecipeWrapper> {
     private final IDrawable background;
-    private final IDrawable slotDrawable;
-    private static final int outputSlotX = 80;
-    private static final int outputSlotY = 1;
-    private static final int RADIUS = 30;
     public static final String UID = BotaniaExMain.MOD_ID + ".Injection";
+    private final IDrawable overlay;
 
     /**
             * コンストラクター。
@@ -27,7 +29,8 @@ public class InjectionCategory extends BlankRecipeCategory<InjectionRecipeWrappe
      */
     public InjectionCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(150, 110);
-        slotDrawable = guiHelper.getSlotDrawable();
+        overlay = guiHelper.createDrawable(
+                new ResourceLocation("botania", "textures/gui/petalOverlay.png"), 0, 0, 150, 110);
     }
 
     @Override
@@ -46,8 +49,12 @@ public class InjectionCategory extends BlankRecipeCategory<InjectionRecipeWrappe
     }
 
     @Override
-    public void drawExtras(Minecraft minecraft) {
-        slotDrawable.draw(minecraft, outputSlotX, outputSlotY);
+    public void drawExtras(@Nonnull Minecraft minecraft) {
+        GlStateManager.enableAlpha();
+        GlStateManager.enableBlend();
+        overlay.draw(minecraft);
+        GlStateManager.disableBlend();
+        GlStateManager.disableAlpha();
     }
 
     @Override
@@ -56,16 +63,27 @@ public class InjectionCategory extends BlankRecipeCategory<InjectionRecipeWrappe
         recipeWrapper.getIngredients(ingredients);
         final Data recipe = Data.parseIngredient(ingredients);
         IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
-        itemStacks.init(0, true, 30, 50);
+        itemStacks.init(0, true, 64, 52);
         itemStacks.set(0, recipe.getInput().getMain());
         final int inputSize = recipe.getInput().getInjectionList().size();
-        IntStream.range(1, inputSize + 1).forEach(v -> {
-            int x = (int) Math.cos(Math.PI * 2 / inputSize * v) * RADIUS + 30;
-            int y = (int) Math.sin(Math.PI * 2 / inputSize * v) * RADIUS + 50;
-            itemStacks.init(v, true, x, y);
-            itemStacks.set(v, recipe.getInput().getInjectionList().get(v - 1));
-        });
-        itemStacks.init(inputSize + 1, false, 90, 50);
+        double angleBetweenEach = 360.0 / inputSize;
+        Point point = new Point(64, 20);
+        Point center = new Point(64, 52);
+        int index = 1;
+        for (ItemStack item : recipe.getInput().getInjectionList()) {
+            itemStacks.init(index, true, point.x, point.y);
+            itemStacks.set(index, item);
+            index += 1;
+            point = rotatePointAbout(point, center, angleBetweenEach);
+        }
+        itemStacks.init(inputSize + 1, false, 103, 17);
         itemStacks.set(inputSize + 1, recipe.getOutput());
+    }
+
+    private Point rotatePointAbout(Point in, Point about, double degrees) {
+        double rad = degrees * Math.PI / 180.0;
+        double newX = Math.cos(rad) * (in.x - about.x) - Math.sin(rad) * (in.y - about.y) + about.x;
+        double newY = Math.sin(rad) * (in.x - about.x) + Math.cos(rad) * (in.y - about.y) + about.y;
+        return new Point((int) newX, (int) newY);
     }
 }

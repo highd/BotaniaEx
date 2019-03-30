@@ -2,6 +2,7 @@ item.botaniaex.shot_sword.name=Shot Sword
 item.botaniaex.rune.name=Rune of True
 item.botaniaex.activator.name=Rune of 
 tile.botaniaex.stand.name=Stand
+tile.botaniaex.injection.name=Injection
 fluid.mana_fluid2=Mana Fluid
 tile.botaniaex:mana_fluid2.name=Mana Fluid
 

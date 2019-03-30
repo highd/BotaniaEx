@@ -1,7 +1,7 @@
 package com.github.highd120.jei;
 
+import com.github.highd120.BotaniaExMain;
 import com.github.highd120.block.injection.InjectionRecipe;
-import com.github.highd120.item.ItemList;
 
 import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IJeiHelpers;
@@ -17,7 +17,7 @@ public class InjectionPlugin extends BlankModPlugin {
         registry.addRecipeCategories(new InjectionCategory(jeiHelpers.getGuiHelper()));
         registry.addRecipeHandlers(new InjectionHandler());
         registry.addRecipes(InjectionRecipe.recipes);
-        registry.addRecipeCategoryCraftingItem(new ItemStack(ItemList.shotSwordItem),
+        registry.addRecipeCategoryCraftingItem(new ItemStack(BotaniaExMain.injectionItem),
                 InjectionCategory.UID);
     }
 }
