@@ -19,8 +19,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ItemList {
     public static ShotSwordItem shotSwordItem;
 
-    @BasicItem(name = "rune")
-    public static Item runeItem;
+    public static RuneItem runeItem;
 
     /**
             * アイテムの登録。
