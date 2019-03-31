@@ -1,6 +1,10 @@
 package com.github.highd120;
 
+import com.github.highd120.block.BlockStand;
 import com.github.highd120.block.SubTileBindSword;
+import com.github.highd120.block.SubTileCreateManaFluid;
+import com.github.highd120.block.SubTileFallingBlock;
+import com.github.highd120.block.injection.BlockInjection;
 import com.github.highd120.item.RuneItem;
 import com.github.highd120.item.ShotSwordItem;
 import com.github.highd120.util.item.ItemManager;
@@ -24,8 +28,12 @@ import vazkii.botania.api.subtile.SubTileEntity;
  */
 public class RecipeList {
     public static RecipeRuneAltar runeRecipe;
+    public static RecipeRuneAltar injectionCoreRecipe;
+    public static ShapedOreRecipe standCoreRecipe;
     public static ShapedOreRecipe shotSwordRecipe;
     public static RecipePetals bindSwordFlowerRecipe;
+    public static RecipePetals createManaFlowerRecipe;
+    public static RecipePetals fallingBlockRecipe;
 
     /**
      * レシピの登録。
@@ -38,6 +46,27 @@ public class RecipeList {
                 "runeManaB", "runeLustB", "runeGluttonyB", "runeGreedB",
                 "runeSlothB", "runeWrathB", "runeEnvyB", "runePrideB");
 
+        @SuppressWarnings("deprecation")
+        Item shimmerrock = GameData.getItemRegistry()
+                .getObject(new ResourceLocation("botania", "shimmerrock"));
+        injectionCoreRecipe = BotaniaAPI.registerRuneAltarRecipe(
+                ItemManager.getItemStack(BlockInjection.class),
+                1000,
+                new ItemStack(shimmerrock), "livingwood", new ItemStack(shimmerrock), "livingwood",
+                new ItemStack(shimmerrock), "livingwood", new ItemStack(shimmerrock), "livingwood",
+                ItemManager.getItemStack(RuneItem.class));
+
+        standCoreRecipe = new ShapedOreRecipe(ItemManager.getItemStack(BlockStand.class),
+                new Object[] {
+                        "XXX",
+                        " Y ",
+                        "ZZZ",
+                        Character.valueOf('X'),
+                        "plankWood",
+                        Character.valueOf('Y'),
+                        "logWood",
+                        Character.valueOf('Z'),
+                        "cobblestone" });
         shotSwordRecipe = new ShapedOreRecipe(ItemManager.getItemStack(ShotSwordItem.class),
                 new Object[] {
                         " X ",
@@ -53,10 +82,22 @@ public class RecipeList {
         ItemStack bindSwordFlower = getFlower(SubTileBindSword.NAME);
         bindSwordFlowerRecipe = BotaniaAPI.registerPetalRecipe(bindSwordFlower,
                 "petalGreen", "petalGreen", "petalBlack",
-                "runeEnvyB", "runePrideB",
+                ItemManager.getItemStack(RuneItem.class),
                 "redstoneRoot", "elvenPixieDust");
 
         GameRegistry.addRecipe(shotSwordRecipe);
+        GameRegistry.addRecipe(standCoreRecipe);
+
+        ItemStack createManaFlower = getFlower(SubTileCreateManaFluid.NAME);
+        createManaFlowerRecipe = BotaniaAPI.registerPetalRecipe(createManaFlower,
+                "petalBlue", "petalBlue", "petalCyan", "petalCyan",
+                "runeEnvyB", "runePrideB",
+                "redstoneRoot", "elvenPixieDust");
+
+        ItemStack fallingBlockFlower = getFlower(SubTileFallingBlock.NAME);
+        fallingBlockRecipe = BotaniaAPI.registerPetalRecipe(fallingBlockFlower,
+                "petalLime", "petalLime", "petalYellow",
+                "runeAutumnB", "redstoneRoot");
     }
 
     /**
