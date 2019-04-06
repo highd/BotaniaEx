@@ -27,11 +27,12 @@ import vazkii.botania.api.mana.spark.ISparkEntity;
 import vazkii.botania.api.mana.spark.SparkHelper;
 
 public class TileInjection extends TileStand implements ISparkAttachable {
-    private static final int MAX_MANA = 10000;
+    private static final int MAX_MANA = 100000;
 
     private ItemStack resultItem;
     private InjectionState state = InjectionState.NOT_WORKING;
     private int mana;
+    private int complateMane;
     private InjectionEffectManager effect;
 
     private static InjectionState[] stateList = InjectionState.values();
@@ -80,7 +81,7 @@ public class TileInjection extends TileStand implements ISparkAttachable {
         }
         if (state == InjectionState.CHARGE_MANA) {
             sparkUpDate();
-            if (isFull()) {
+            if (getCurrentMana() >= complateMane) {
                 state = InjectionState.EFFECT;
                 effect.start();
                 VanillaPacketDispatcher.dispatchTEToNearbyPlayers(getWorld(), pos);
@@ -107,7 +108,7 @@ public class TileInjection extends TileStand implements ISparkAttachable {
             result.setNoGravity(true);
             result.setVelocity(0, -0.2f, 0);
         }
-        mana = 0;
+        mana -= complateMane;
         state = InjectionState.NOT_WORKING;
     }
 
@@ -166,6 +167,7 @@ public class TileInjection extends TileStand implements ISparkAttachable {
             if (itemNameList.equals(recipe)
                     && getItem().getItem() == data.getInput().getMain().getItem()) {
                 resultItem = data.getOutput().copy();
+                complateMane = data.getUseMana();
                 return true;
             }
         }
