@@ -80,11 +80,11 @@ public class InjectionEffectManager implements HasNbtTagData {
      */
     public InjectionEffectManager(List<BlockPos> pointList, BlockPos center) {
         this.wispList = pointList.stream().map(point -> {
-            Vec3d postion = MathUtil.blockPosToVec3dCenter(point);
+            Vec3d postion = MathUtil.blockPosToVec3dCenter(point).addVector(0, 0.8, 0);
             return new WispData(postion, new Vec3d(0, 0, 0));
         }).collect(Collectors.toList());
         this.center = MathUtil.blockPosToVec3dCenter(center);
-        wispList.add(new WispData(this.center, new Vec3d(0, 0, 0)));
+        wispList.add(new WispData(this.center.addVector(0.0, 0.5, 0.0), new Vec3d(0, 0, 0)));
     }
 
     /**
