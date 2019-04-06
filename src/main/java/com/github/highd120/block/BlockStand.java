@@ -64,7 +64,7 @@ public class BlockStand extends Block {
             float hitY, float hitZ) {
         if (!worldIn.isRemote) {
             TileStand tile = (TileStand) worldIn.getTileEntity(pos);
-            tile.action(heldItem);
+            tile.action(heldItem, playerIn.isCreative());
         }
         return true;
     }
