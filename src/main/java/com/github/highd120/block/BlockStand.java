@@ -1,5 +1,7 @@
 package com.github.highd120.block;
 
+import javax.annotation.Nonnull;
+
 import com.github.highd120.util.block.BlockRegister;
 
 import net.minecraft.block.Block;
@@ -11,11 +13,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 @BlockRegister(name = "stand")
 public class BlockStand extends Block {
+
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0, 0, 0, 1, 11.0 / 16.0, 1);
 
     /**
             * コンストラクター。
@@ -24,6 +30,12 @@ public class BlockStand extends Block {
         super(Material.ROCK);
         setHardness(3.5F);
         setSoundType(SoundType.STONE);
+    }
+
+    @Nonnull
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return AABB;
     }
 
     @Override
