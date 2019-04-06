@@ -1,7 +1,7 @@
 package com.github.highd120.block.injection;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.github.highd120.block.TileStand;
@@ -14,8 +14,10 @@ import com.github.highd120.util.NbtTagUtil;
 import com.github.highd120.util.WorldUtil;
 import com.google.common.base.Predicates;
 
+import lombok.AllArgsConstructor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -130,48 +132,62 @@ public class TileInjection extends TileStand implements ISparkAttachable {
         }
     }
 
+    @AllArgsConstructor
+    private static class LaunchableResult {
+        List<TileStand> standList;
+        boolean isLaunchable;
+    }
+
     /**
      * モードをアクティブにする。
      */
     public void active() {
-        if (state == InjectionState.NOT_WORKING && isLaunchable()) {
-            List<BlockPos> standList = WorldUtil.scanTileEnity(getWorld(),
-                    MathUtil.getAxisAlignedPlane(getPos(), 3),
-                    tile -> tile instanceof TileStand && !(tile instanceof TileInjection),
-                    (TileStand stand) -> Optional.ofNullable(stand.getPos()));
+        LaunchableResult result = isLaunchable();
+        if (state == InjectionState.NOT_WORKING && result.isLaunchable) {
+            List<BlockPos> standList = result.standList.stream()
+                    .map(stand -> stand.getPos())
+                    .collect(Collectors.toList());
             effect = new InjectionEffectManager(standList, getPos());
             state = InjectionState.CHARGE_MANA;
         }
+    }
+
+    private static String itemData(ItemStack stack) {
+        if (stack == null) {
+            return null;
+        }
+        return stack.getItem().getRegistryName().toString();
     }
 
     /**
      * 稼働できるかの判定。
      * @return 稼働できるか。
      */
-    public boolean isLaunchable() {
+    public LaunchableResult isLaunchable() {
         if (getItem() == null) {
-            return false;
+            return new LaunchableResult(new ArrayList<>(), false);
         }
-        List<String> itemNameList = WorldUtil.scanTileEnity(getWorld(),
+        List<TileStand> standList = WorldUtil.scanTileEnity(getWorld(),
                 MathUtil.getAxisAlignedPlane(getPos(), 3),
-                tile -> tile instanceof TileStand && !(tile instanceof TileInjection),
-                (TileStand stand) -> Optional.ofNullable(stand.getItem()))
-                .stream()
-                .map(item -> item.getItem().getRegistryName().toString())
+                tile -> tile instanceof TileStand && !(tile instanceof TileInjection));
+        List<String> itemNameList = standList.stream()
+                .map(stand -> itemData(stand.getItem()))
                 .sorted()
                 .collect(Collectors.toList());
         for (InjectionRecipe.Data data : InjectionRecipe.recipes) {
-            List<String> recipe = data.getInput().getInjectionList().stream()
-                    .map(item -> item.getItem().getRegistryName().toString())
+            InjectionRecipe.Input input = data.getInput();
+            Item main = input.getMain().getItem();
+            List<String> recipe = input.getInjectionList()
+                    .stream()
+                    .map(item -> itemData(item))
                     .sorted().collect(Collectors.toList());
-            if (itemNameList.equals(recipe)
-                    && getItem().getItem() == data.getInput().getMain().getItem()) {
+            if (itemNameList.equals(recipe) && getItem().getItem() == main) {
                 resultItem = data.getOutput().copy();
                 complateMane = data.getUseMana();
-                return true;
+                return new LaunchableResult(standList, true);
             }
         }
-        return false;
+        return new LaunchableResult(new ArrayList<>(), false);
     }
 
     @Override
