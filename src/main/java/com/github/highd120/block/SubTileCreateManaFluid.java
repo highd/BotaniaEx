@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.lwjgl.opengl.GL11;
 
 import com.github.highd120.BotaniaExMain;
+import com.github.highd120.Lexicon;
 import com.github.highd120.util.CollectionUtil;
 import com.github.highd120.util.MathUtil;
 import com.github.highd120.util.NbtTagUtil;
@@ -25,6 +26,7 @@ import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.mana.IManaPool;
 import vazkii.botania.api.mana.IManaReceiver;
 import vazkii.botania.api.subtile.RadiusDescriptor;
@@ -155,5 +157,10 @@ public class SubTileCreateManaFluid extends SubTileFunctional {
 
         mc.fontRendererObj.drawStringWithShadow(filter, x, y, color);
         GlStateManager.disableBlend();
+    }
+
+    @Override
+    public LexiconEntry getEntry() {
+        return Lexicon.createManaFlowerEntry;
     }
 }

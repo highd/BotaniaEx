@@ -2,6 +2,7 @@ package com.github.highd120.block;
 
 import javax.annotation.Nonnull;
 
+import com.github.highd120.Lexicon;
 import com.github.highd120.util.block.BlockRegister;
 
 import net.minecraft.block.Block;
@@ -17,9 +18,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 
 @BlockRegister(name = "stand")
-public class BlockStand extends Block {
+public class BlockStand extends Block implements ILexiconable {
 
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0, 0, 0, 1, 11.0 / 16.0, 1);
 
@@ -82,5 +85,11 @@ public class BlockStand extends Block {
 
     public void removeItem() {
 
+    }
+
+    @Override
+    public LexiconEntry getEntry(World world, BlockPos pos, EntityPlayer player,
+            ItemStack lexicon) {
+        return Lexicon.standEntry;
     }
 }

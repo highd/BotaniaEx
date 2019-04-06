@@ -1,0 +1,56 @@
+item.botaniaex.shot_sword.name=剣の矢
+item.botaniaex.rune.name=真理のルーン
+tile.botaniaex.stand.name=注入スタンド
+tile.botaniaex.injection.name=マナ注入装置
+fluid.mana_fluid2=高濃度マナ溶液
+tile.botaniaex:mana_fluid2.name=高濃度マナ溶液
+
+tile.botania:flower.bindsword.name=バイジオン
+tile.botania:flower.bindsword.reference=Test Messeage.
+
+tile.botania:flower.fallingblock.name=フォーリンカズラ
+tile.botania:flower.fallingblock.reference=Test Messeage.
+
+tile.botania:flower.createmanafluid.name=マナリカリア
+tile.botania:flower.createmanafluid.reference=Test Messeage.
+
+achievement.botaniaex:shotsword=Archivement
+achievement.botaniaex:shotsword.desc=Archivement Desc.
+
+
+lexicon.shot_sword.name=剣の矢
+lexicon.shot_sword.page0=剣の矢はセットした剣を飛 ばして攻 撃できる遠距離 武器だ。<br>剣はバイジオンでセットす ることができる。<br>剣の耐久値は減らないが、 中量のマナは使用する。
+lexicon.shot_sword.page1=レシピ
+
+lexicon.rune.name=真理のルーン
+lexicon.rune.page0=真理のルーンはボタニアの 全てのルーンを素材とする ルーンだ。<br>ただの中間素材で、特別な 効果は存在しない。
+lexicon.rune.page1=レシピ
+
+lexicon.stand.name=注入スタンド
+lexicon.stand.page0=注入スタンドはボタニアイ ンジェクションの儀式に使 用するブロックだ。<br>このブロックにはアイテム を一つで設置できる。<br>ボタニアインジェクション の詳細はマナ注入装置で説 明されている。
+lexicon.stand.page1=レシピ
+lexicon.stand.tagline=ボタニアインジェクションの副材料置き場
+
+lexicon.injection.name=マナ注入装置
+lexicon.injection.page0=マナ注入装置はボタニアイ ンジェクションの儀式に使  用するブロックだ。<br>このブロックの周囲2ブロ ックの中に注入スタンドを 必要数設置する必要がある 。<br>この注入スタンドに材料を 設置する。<br>この注入スタンドは範囲内 ならばどこに置いても構わ ない。
+lexicon.injection.page1=そして、注入するアイテム をこのブロックに設置する 。<br>また、ボタニアインジェク ションにはマナが必要なの で、スパーク設置するなの でマナの供給を行う必要が ある。<br>これらの準備を整えたのち 、森の杖で儀式を起動でき る。<br>森の杖の例にもれず、ディ スペンサーで代行できる。
+lexicon.injection.page2=レシピ
+lexicon.injection.tagline=ボタニアインジェクションのメイン
+
+lexicon.bindsword.name=バイジオン
+lexicon.bindsword.page0=バイジオンは剣と剣の矢を 結びつける花だ。<br>この花は結合と分解の二つ のモードがある。<br>モードはワンドで切り替え られる。<br>結合モードでは結合する剣 と結合していない剣の矢を バイジオンの付近に投げ込 むことで、二つを結合でき る。
+lexicon.bindsword.page1=分割モードでは結合した剣 の矢を剣と剣の矢に分解し 、元に戻すことができる。<br>二つに動作は両方ともマナ を必要とする。
+lexicon.bindsword.page2=レシピ
+lexicon.bindsword.tagline=剣と剣の矢の結合。
+
+lexicon.fallingblock.name=フォーリンカズラ
+lexicon.fallingblock.page0=フォーリンカズラば落下エ ンティティでマナを生み出 す。<br>落下エンティティとは落下 する砂や金床などのことだ <br>落下エンティティに種類は 生産量に関係ないので砂を 落とすことをおすすめする <br>だが、落下エンティティが 動く方向が下から上に近い ほど生産量が大幅に増える
+lexicon.fallingblock.page1=普通に落としただけでは生 産量は非常に小さいため、 なんらかの機構を組むべき だろう。<br>スライムブロックでエンテ ィティを飛ばせること、落 下エンティティは柵の上だ とアイテム化しないこと、 そして半分以上空中にある とアイテム化しないことを 利用しよう。
+lexicon.fallingblock.tagline=落下エ ンティティからのマナ
+lexicon.fallingblock.page2=レシピ
+
+lexicon.createmanafluid.name=マナリカリア
+lexicon.createmanafluid.page0=マナリカリアは水にマナを 溶かしこむことができる。<br>マナリカリアにはマナ生産 と液体溶解の二つのモード がある。<br>液体溶解では水バケツを放 り込むことで、高濃度マナ 溶液のバケツに変換するこ とができる。<br>マナ生産は高濃度マナ溶液 のバケツを放り込むことで 隣接するマナプールでマナ を供給する。
+lexicon.createmanafluid.page1=バケツは水バケツとして返っ てくる。<br>マナ変換効率は100％で あり、マナ生産にマナは必 要としない。
+lexicon.createmanafluid.tagline=マナの液体化
+lexicon.createmanafluid.page2=レシピ

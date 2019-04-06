@@ -2,11 +2,13 @@ package com.github.highd120.block;
 
 import java.util.List;
 
+import com.github.highd120.Lexicon;
 import com.github.highd120.util.MathUtil;
 import com.github.highd120.util.subtile.SubTileRegister;
 
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.util.math.Vec3d;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.subtile.RadiusDescriptor;
 import vazkii.botania.api.subtile.SubTileGenerating;
 
@@ -43,5 +45,10 @@ public class SubTileFallingBlock extends SubTileGenerating {
     @Override
     public int getMaxMana() {
         return 20000;
+    }
+
+    @Override
+    public LexiconEntry getEntry() {
+        return Lexicon.fallingBlockEntry;
     }
 }

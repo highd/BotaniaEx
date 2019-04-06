@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Editor</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="editor">
+        <p>
+            <textarea v-model="input" cols="100" rows="20"></textarea>
+        </p>
+        <p>
+            <textarea v-model="output" cols="100" rows="20"> </textarea>
+        </p>
+    </div>
+    <script>
+        function splitByLength(str, length) {
+            var resultArr = [];
+            if (!str || !length || length < 1) {
+                return resultArr;
+            }
+            var index = 0;
+            var start = index;
+            var end = start + length;
+            while (start < str.length) {
+                resultArr[index] = str.substring(start, end);
+                index++;
+                start = end;
+                end = start + length;
+            }
+            return resultArr;
+        }
+
+        const vm = new Vue({
+            el: '#editor',
+            data: {
+                input: ""
+            },
+            computed: {
+                output: function () {
+                    return this.input.split(/\n/g).
+                    map(text => splitByLength(text, 12).join(" ")).join("<br>");
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
