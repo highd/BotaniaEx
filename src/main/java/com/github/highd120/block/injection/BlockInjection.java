@@ -8,9 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import vazkii.botania.api.wand.IWandable;
 
@@ -35,16 +33,5 @@ public class BlockInjection extends BlockStand implements IWandable {
             tile.active();
         }
         return false;
-    }
-
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state,
-            EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX,
-            float hitY, float hitZ) {
-        TileInjection tile = (TileInjection) worldIn.getTileEntity(pos);
-        playerIn.addChatComponentMessage(new TextComponentString("mana" + tile.getCurrentMana()));
-        return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX,
-                hitY,
-                hitZ);
     }
 }
