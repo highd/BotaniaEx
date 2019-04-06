@@ -1,9 +1,11 @@
 {
+    "parent": "minecraft:block/block",
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
         "0": "blocks/cobblestone",
         "1": "blocks/log_big_oak",
-        "2": "blocks/planks_birch"
+        "2": "blocks/planks_birch",
+        "particle": "blocks/planks_birch"
     },
     "display": {
         "head": {
@@ -50,8 +52,8 @@
     "elements": [
         {
             "name": "Cube",
-            "from": [ 0, 0, 0 ], 
-            "to": [ 16, 1, 16 ], 
+            "from": [ 0, 0, 0 ],
+            "to": [ 16, 1, 16 ],
             "faces": {
                 "north": { "texture": "#0", "uv": [ 0, 0, 16, 1 ] },
                 "east": { "texture": "#0", "uv": [ 0, 0, 16, 1 ] },
@@ -63,8 +65,8 @@
         },
         {
             "name": "Cube",
-            "from": [ 1, 1, 1 ], 
-            "to": [ 15, 2, 15 ], 
+            "from": [ 1, 1, 1 ],
+            "to": [ 15, 2, 15 ],
             "faces": {
                 "north": { "texture": "#0", "uv": [ 0, 0, 14, 1 ] },
                 "east": { "texture": "#0", "uv": [ 0, 0, 14, 1 ] },
@@ -75,8 +77,8 @@
         },
         {
             "name": "Cube",
-            "from": [ 3, 2, 3 ], 
-            "to": [ 13, 3, 13 ], 
+            "from": [ 3, 2, 3 ],
+            "to": [ 13, 3, 13 ],
             "faces": {
                 "north": { "texture": "#0", "uv": [ 0, 0, 10, 1 ] },
                 "east": { "texture": "#0", "uv": [ 0, 0, 10, 1 ] },
@@ -87,8 +89,8 @@
         },
         {
             "name": "Cube",
-            "from": [ 5, 3, 5 ], 
-            "to": [ 11, 9, 11 ], 
+            "from": [ 5, 3, 5 ],
+            "to": [ 11, 9, 11 ],
             "faces": {
                 "north": { "texture": "#1", "uv": [ 0, 0, 6, 6 ] },
                 "east": { "texture": "#1", "uv": [ 0, 0, 6, 6 ] },
@@ -98,8 +100,8 @@
         },
         {
             "name": "Cube",
-            "from": [ 1, 9, 1 ], 
-            "to": [ 15, 10, 15 ], 
+            "from": [ 1, 9, 1 ],
+            "to": [ 15, 10, 15 ],
             "faces": {
                 "north": { "texture": "#2", "uv": [ 0, 1, 14, 2 ] },
                 "east": { "texture": "#2", "uv": [ 0, 1, 14, 2 ] },
@@ -111,8 +113,8 @@
         },
         {
             "name": "Cube",
-            "from": [ 2, 10, 2 ], 
-            "to": [ 14, 11, 14 ], 
+            "from": [ 2, 10, 2 ],
+            "to": [ 14, 11, 14 ],
             "faces": {
                 "north": { "texture": "#2", "uv": [ 0, 0, 12, 1 ] },
                 "east": { "texture": "#2", "uv": [ 0, 0, 12, 1 ] },
