@@ -29,12 +29,12 @@ public class TileStand extends TileHasInventory {
      * @param stack プレイヤー。
      */
     public void action(ItemStack stack) {
-        if (stack != null) {
+        if (stack != null && getItem() == null) {
             ItemStack insertItem = stack.copy();
             insertItem.stackSize = 1;
             itemHandler.setStackInSlot(0, insertItem);
             stack.stackSize--;
-        } else {
+        } else if (getItem() != null) {
             ItemUtil.dropItem(worldObj, pos, getItem());
             itemHandler.setStackInSlot(0, null);
         }

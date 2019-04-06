@@ -67,4 +67,8 @@ public class BlockStand extends Block {
 
         super.breakBlock(world, pos, state);
     }
+
+    public void removeItem() {
+
+    }
 }

@@ -3,7 +3,9 @@ package com.github.highd120;
 import com.github.highd120.achievement.AchievementsList;
 import com.github.highd120.block.TileStand;
 import com.github.highd120.block.injection.InjectionRecipe;
+import com.github.highd120.block.injection.TileInjection;
 import com.github.highd120.entity.EntitySword;
+import com.github.highd120.network.NetworkHandler;
 import com.github.highd120.proxy.CommonProxy;
 import com.github.highd120.util.block.BlockManager;
 import com.github.highd120.util.gui.GuiManager;
@@ -78,6 +80,7 @@ public class BotaniaExMain {
         RecipeList.init();
         InjectionRecipe.init();
         AchievementsList.init();
+        NetworkHandler.init();
 
         FluidRegistry.registerFluid(manaFluid);
 
@@ -94,6 +97,7 @@ public class BotaniaExMain {
         FluidRegistry.addBucketForFluid(BotaniaExMain.manaFluid);
 
         GameRegistry.registerTileEntity(TileStand.class, MOD_ID + ".stand");
+        GameRegistry.registerTileEntity(TileInjection.class, MOD_ID + ".injection");
 
         proxy.registerRenderers();
     }

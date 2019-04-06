@@ -17,6 +17,17 @@ public class MathUtil {
     }
 
     /**
+     * AxisAlignedBBDPlaneの作成。
+     * @param postion 中心座標。
+     * @param range 半径。
+     * @return
+     */
+    public static AxisAlignedBB getAxisAlignedPlane(BlockPos postion, int range) {
+        return new AxisAlignedBB(postion.add(-range, 0, -range),
+                postion.add(range + 1, 0, range + 1));
+    }
+
+    /**
      * 二つのベクトルの角度の計算。
      * @param vec1 ベクトル1
      * @param vec2 ベクトル2
@@ -31,4 +42,7 @@ public class MathUtil {
         return Math.toDegrees(Math.acos(a / (Math.sqrt(b) * Math.sqrt(c))));
     }
 
+    public static Vec3d blockPosToVec3dCenter(BlockPos pos) {
+        return new Vec3d(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+    }
 }
