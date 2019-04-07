@@ -9,12 +9,15 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'eclipse'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
 //Only edit below this line, the above code adds and enables the nessasary things for Forge to be setup.
 
 
 version = "1.0"
-group= "com.yourname.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "modid"
+group= "com.highd120.botaniaex" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "botaniaex"
 
 sourceCompatibility = targetCompatibility = "1.8" // Need this here so eclipse task generates correctly.
 compileJava {
@@ -57,6 +60,9 @@ repositories {
 }
 
 dependencies {
+    compile files(
+        'run\\mods\\Botania r1.9-341.jar'
+    )
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
