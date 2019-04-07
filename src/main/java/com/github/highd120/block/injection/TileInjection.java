@@ -156,7 +156,7 @@ public class TileInjection extends TileStand implements ISparkAttachable {
 
     private static String itemData(ItemStack stack) {
         if (stack == null) {
-            return null;
+            return "";
         }
         return stack.getItem().getRegistryName().toString();
     }
@@ -174,6 +174,7 @@ public class TileInjection extends TileStand implements ISparkAttachable {
                 tile -> tile instanceof TileStand && !(tile instanceof TileInjection));
         List<String> itemNameList = standList.stream()
                 .map(stand -> itemData(stand.getItem()))
+                .filter(name -> !name.equals(""))
                 .sorted()
                 .collect(Collectors.toList());
         for (InjectionRecipe.Data data : InjectionRecipe.recipes) {
