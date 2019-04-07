@@ -63,4 +63,8 @@ public class TileStand extends TileHasInventory {
         }
 
     }
+
+    public void removeItem() {
+        itemHandler.setStackInSlot(0, null);
+    }
 }

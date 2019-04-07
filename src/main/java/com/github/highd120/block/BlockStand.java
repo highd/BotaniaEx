@@ -83,10 +83,6 @@ public class BlockStand extends Block implements ILexiconable {
         super.breakBlock(world, pos, state);
     }
 
-    public void removeItem() {
-
-    }
-
     @Override
     public LexiconEntry getEntry(World world, BlockPos pos, EntityPlayer player,
             ItemStack lexicon) {

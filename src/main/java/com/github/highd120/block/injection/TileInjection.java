@@ -144,6 +144,8 @@ public class TileInjection extends TileStand implements ISparkAttachable {
     public void active() {
         LaunchableResult result = isLaunchable();
         if (state == InjectionState.NOT_WORKING && result.isLaunchable) {
+            result.standList.forEach(stand -> stand.removeItem());
+            removeItem();
             List<BlockPos> standList = result.standList.stream()
                     .map(stand -> stand.getPos())
                     .collect(Collectors.toList());
