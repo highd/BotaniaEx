@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.github.highd120.SoundList;
 import com.github.highd120.block.TileStand;
 import com.github.highd120.network.NetworkHandler;
 import com.github.highd120.network.NetworkInjectionEffect;
@@ -27,6 +28,7 @@ import vazkii.botania.api.mana.IManaPool;
 import vazkii.botania.api.mana.spark.ISparkAttachable;
 import vazkii.botania.api.mana.spark.ISparkEntity;
 import vazkii.botania.api.mana.spark.SparkHelper;
+import vazkii.botania.api.sound.BotaniaSoundEvents;
 
 public class TileInjection extends TileStand implements ISparkAttachable {
     private static final int MAX_MANA = 100000;
@@ -35,6 +37,7 @@ public class TileInjection extends TileStand implements ISparkAttachable {
     private InjectionState state = InjectionState.NOT_WORKING;
     private int mana;
     private int complateMane;
+    private int soundCount = 0;
     private InjectionEffectManager effect;
 
     private static InjectionState[] stateList = InjectionState.values();
@@ -83,16 +86,23 @@ public class TileInjection extends TileStand implements ISparkAttachable {
         }
         if (state == InjectionState.CHARGE_MANA) {
             sparkUpDate();
+            soundCount++;
+            if (soundCount % 9 == 0) {
+                SoundList.playSoundBlock(getWorld(), BotaniaSoundEvents.ding, getPos());
+            }
             if (getCurrentMana() >= complateMane) {
+                SoundList.playSoundBlock(getWorld(), SoundList.injectionEffect, getPos());
                 state = InjectionState.EFFECT;
                 effect.start();
                 VanillaPacketDispatcher.dispatchTEToNearbyPlayers(getWorld(), pos);
+                soundCount = 0;
                 getWorld().scheduleUpdate(getPos(), getBlockType(),
                         getBlockType().tickRate(getWorld()));
             }
         }
         if (state == InjectionState.EFFECT) {
             if (effect.isEnd()) {
+                SoundList.playSoundBlock(getWorld(), SoundList.injectionComplete, getPos());
                 effect = null;
                 complete();
                 VanillaPacketDispatcher.dispatchTEToNearbyPlayers(getWorld(), pos);

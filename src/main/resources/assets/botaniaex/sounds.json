@@ -1,0 +1,10 @@
+{
+	"injection_effect": {
+		"sounds":["botaniaex:injection_effect"],
+		"subtitle": "botaniaex.subtitle.injection_effect"
+	},
+	"injection_complete": {
+		"sounds":["botaniaex:injection_complete"],
+		"subtitle": "botaniaex.subtitle.injection_complete"
+	}
+}

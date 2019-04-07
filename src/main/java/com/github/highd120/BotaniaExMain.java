@@ -99,6 +99,7 @@ public class BotaniaExMain {
         GameRegistry.registerTileEntity(TileStand.class, MOD_ID + ".stand");
         GameRegistry.registerTileEntity(TileInjection.class, MOD_ID + ".injection");
 
+        SoundList.init();
         proxy.registerRenderers();
     }
 
