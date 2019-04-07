@@ -2,8 +2,8 @@ item.botaniaex.shot_sword.name=剣の矢
 item.botaniaex.rune.name=真理のルーン
 tile.botaniaex.stand.name=注入スタンド
 tile.botaniaex.injection.name=マナ注入装置
-fluid.mana_fluid2=高濃度マナ溶液
-tile.botaniaex:mana_fluid2.name=高濃度マナ溶液
+fluid.ex_mana_fluid=高濃度マナ溶液
+tile.botaniaex:ex_mana_fluid.name=高濃度マナ溶液
 
 tile.botania:flower.bindsword.name=バイジオン
 tile.botania:flower.bindsword.reference=Test Messeage.

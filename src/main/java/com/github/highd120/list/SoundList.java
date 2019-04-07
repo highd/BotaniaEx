@@ -1,4 +1,6 @@
-package com.github.highd120;
+package com.github.highd120.list;
+
+import com.github.highd120.BotaniaExMain;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;

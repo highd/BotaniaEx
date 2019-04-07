@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import org.lwjgl.opengl.GL11;
 
-import com.github.highd120.BotaniaExMain;
 import com.github.highd120.Lexicon;
+import com.github.highd120.list.FluidList;
 import com.github.highd120.util.CollectionUtil;
 import com.github.highd120.util.MathUtil;
 import com.github.highd120.util.NbtTagUtil;
@@ -62,7 +62,7 @@ public class SubTileCreateManaFluid extends SubTileFunctional {
                 if (!getWorld().isRemote) {
                     ItemStack stack = UniversalBucket.getFilledBucket(
                             ForgeModContainer.getInstance().universalBucket,
-                            BotaniaExMain.manaFluid);
+                            FluidList.manaFluid);
                     EntityItem result = new EntityItem(getWorld(), getPos().getX(), getPos().getY(),
                             getPos().getZ(), stack);
                     getWorld().spawnEntityInWorld(result);
@@ -74,7 +74,7 @@ public class SubTileCreateManaFluid extends SubTileFunctional {
 
             Optional<EntityItem> manaBucket = CollectionUtil.findIf(items, item -> {
                 String name = NbtTagUtil.getString("FluidName", item.getEntityItem()).orElse("");
-                return name.equals("mana_fluid2");
+                return name.equals("ex_mana_fluid");
             });
             manaBucket.ifPresent(item -> {
                 if (!getWorld().isRemote) {

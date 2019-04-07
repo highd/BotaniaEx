@@ -3,7 +3,7 @@
     "variants": {
         "fluid": {
             "model" : "forge:fluid",
-            "custom": { "fluid": "mana_fluid2" }
+            "custom": { "fluid": "ex_mana_fluid" }
         }
     }
 }

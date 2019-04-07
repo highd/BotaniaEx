@@ -7,6 +7,7 @@ import com.github.highd120.block.SubTileFallingBlock;
 import com.github.highd120.block.injection.BlockInjection;
 import com.github.highd120.item.RuneItem;
 import com.github.highd120.item.ShotSwordItem;
+import com.github.highd120.list.RecipeList;
 import com.github.highd120.util.item.ItemManager;
 
 import net.minecraft.item.ItemStack;

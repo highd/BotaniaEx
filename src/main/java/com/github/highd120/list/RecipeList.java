@@ -1,4 +1,4 @@
-package com.github.highd120;
+package com.github.highd120.list;
 
 import com.github.highd120.block.BlockStand;
 import com.github.highd120.block.SubTileBindSword;

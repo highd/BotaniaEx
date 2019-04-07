@@ -5,6 +5,9 @@ import com.github.highd120.block.TileStand;
 import com.github.highd120.block.injection.InjectionRecipe;
 import com.github.highd120.block.injection.TileInjection;
 import com.github.highd120.entity.EntitySword;
+import com.github.highd120.list.FluidList;
+import com.github.highd120.list.RecipeList;
+import com.github.highd120.list.SoundList;
 import com.github.highd120.network.NetworkHandler;
 import com.github.highd120.proxy.CommonProxy;
 import com.github.highd120.util.block.BlockManager;
@@ -12,13 +15,6 @@ import com.github.highd120.util.gui.GuiManager;
 import com.github.highd120.util.item.ItemManager;
 import com.github.highd120.util.subtile.SubTileManager;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -50,17 +46,6 @@ public class BotaniaExMain {
             serverSide = "com.github.highd120.proxy.CommonProxy")
     public static CommonProxy proxy;
 
-    public static Block manaFluidBlock;
-
-    public static Fluid manaFluid = new Fluid("mana_fluid2",
-            new ResourceLocation(BotaniaExMain.MOD_ID + ":blocks/mana_fluid_still"),
-            new ResourceLocation(BotaniaExMain.MOD_ID + ":blocks/mana_fluid_flow"));
-
-    public static ItemBlock manaFluidItem;
-
-    public static ModelResourceLocation manaFluidModelLocation = new ModelResourceLocation(
-            BotaniaExMain.MOD_ID + ":mana_fluid_block", "fluid");
-
     static {
         FluidRegistry.enableUniversalBucket();
     }
@@ -81,26 +66,14 @@ public class BotaniaExMain {
         InjectionRecipe.init();
         AchievementsList.init();
         NetworkHandler.init();
-
-        FluidRegistry.registerFluid(manaFluid);
-
-        manaFluidBlock = new BlockFluidClassic(manaFluid, Material.WATER);
-        manaFluidBlock.setRegistryName(new ResourceLocation(MOD_ID, "mana_fluid_block"));
-        manaFluidBlock.setUnlocalizedName(MOD_ID + ":mana_fluid");
-        manaFluid.setBlock(manaFluidBlock);
-        GameRegistry.register(manaFluidBlock);
-        manaFluidItem = new ItemBlock(manaFluidBlock);
-        manaFluidItem.setRegistryName(manaFluidBlock.getRegistryName());
-        manaFluidItem.setUnlocalizedName(manaFluidBlock.getUnlocalizedName());
-        GameRegistry.register(manaFluidItem);
-        proxy.registerFluid();
-        FluidRegistry.addBucketForFluid(BotaniaExMain.manaFluid);
+        FluidList.init();
 
         GameRegistry.registerTileEntity(TileStand.class, MOD_ID + ".stand");
         GameRegistry.registerTileEntity(TileInjection.class, MOD_ID + ".injection");
 
         SoundList.init();
         proxy.registerRenderers();
+        proxy.registerFluid();
     }
 
     @Mod.EventHandler

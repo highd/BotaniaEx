@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.github.highd120.SoundList;
 import com.github.highd120.block.TileStand;
+import com.github.highd120.list.SoundList;
 import com.github.highd120.network.NetworkHandler;
 import com.github.highd120.network.NetworkInjectionEffect;
 import com.github.highd120.network.NetworkInjectionEffectEnd;
