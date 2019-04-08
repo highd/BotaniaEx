@@ -116,7 +116,7 @@ public class TileInjection extends TileStand implements ISparkAttachable {
     private void complete() {
         NetworkHandler.sendToNearby(getWorld(), getPos(), new NetworkInjectionEffectEnd(getPos()));
         if (!getWorld().isRemote) {
-            EntityItem result = ItemUtil.dropItem(getWorld(), getPos().add(0, 8, 0), resultItem);
+            EntityItem result = ItemUtil.dropItem(getWorld(), getPos().add(0, 4, 0), resultItem);
             result.setNoGravity(true);
             result.setVelocity(0, -0.2f, 0);
         }
@@ -154,13 +154,14 @@ public class TileInjection extends TileStand implements ISparkAttachable {
     public void active() {
         LaunchableResult result = isLaunchable();
         if (state == InjectionState.NOT_WORKING && result.isLaunchable) {
-            result.standList.forEach(stand -> stand.removeItem());
-            removeItem();
             List<BlockPos> standList = result.standList.stream()
+                    .filter(stand -> stand.getItem() != null)
                     .map(stand -> stand.getPos())
                     .collect(Collectors.toList());
             effect = new InjectionEffectManager(standList, getPos());
             state = InjectionState.CHARGE_MANA;
+            result.standList.forEach(stand -> stand.removeItem());
+            removeItem();
         }
     }
 

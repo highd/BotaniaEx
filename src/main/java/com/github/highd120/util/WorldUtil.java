@@ -7,7 +7,11 @@ import java.util.function.Predicate;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import vazkii.botania.common.network.PacketBotaniaEffect;
+import vazkii.botania.common.network.PacketBotaniaEffect.EffectType;
+import vazkii.botania.common.network.PacketHandler;
 
 public class WorldUtil {
     /**
@@ -34,5 +38,21 @@ public class WorldUtil {
             }
         }
         return list;
+    }
+
+    /**
+     * Botaniaのエフェクトの再生。
+     * @param type 種類。
+     * @param postion 座標。
+     * @param diff 座標との差分。
+     * @param args 追加引数。
+     */
+    public static void playBotaniaEffect(World world, EffectType type, BlockPos postion, Vec3d diff,
+            int... args) {
+        double x = postion.getX() + diff.xCoord;
+        double y = postion.getY() + diff.yCoord;
+        double z = postion.getZ() + diff.zCoord;
+        PacketBotaniaEffect effect = new PacketBotaniaEffect(type, x, y, z, args);
+        PacketHandler.sendToNearby(world, postion, effect);
     }
 }

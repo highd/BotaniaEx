@@ -15,4 +15,15 @@ public class FxWispInjection extends FXWisp {
                 1);
         particleAge = particleMaxAge / 2;
     }
+
+    /**
+     * コンストラクター。
+     * @param world ワールド。
+     * @param initPoint 初期地点。
+     */
+    public FxWispInjection(World world, Vec3d initPoint, int size, int lifeTime) {
+        super(world, initPoint.xCoord, initPoint.yCoord, initPoint.zCoord, size, 0, 1, 0, true,
+                true, lifeTime);
+        particleAge = particleMaxAge / 2;
+    }
 }

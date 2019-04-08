@@ -12,5 +12,8 @@ public class CommonProxy {
 
     public void spawnWispInjection(Vec3d initPoint) {
     }
+
+    public void spawnWispInjection(Vec3d initPoint, int size, int lifeTime) {
+    }
     // CHECKSTYLE:ON
 }

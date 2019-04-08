@@ -3,11 +3,16 @@ package com.github.highd120.block;
 import java.util.List;
 
 import com.github.highd120.Lexicon;
+import com.github.highd120.list.SoundList;
 import com.github.highd120.util.MathUtil;
 import com.github.highd120.util.subtile.SubTileRegister;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityFallingBlock;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.WorldServer;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.subtile.RadiusDescriptor;
 import vazkii.botania.api.subtile.SubTileGenerating;
@@ -33,6 +38,12 @@ public class SubTileFallingBlock extends SubTileGenerating {
                 int generateMana = (int) Math.floor(angle * angle / 4 + 30);
                 mana += generateMana;
                 block.setDead();
+            }
+            if (getWorld() instanceof WorldServer) {
+                SoundList.playSoundBlock(getWorld(), SoundEvents.ENTITY_GENERIC_EAT, getPos());
+                ((WorldServer) getWorld()).spawnParticle(EnumParticleTypes.BLOCK_DUST,
+                        false, block.posX, block.posY + 1, block.posZ, 20, 0.1D, 0.1D, 0.1D, 0.05D,
+                        Block.getStateId(block.getBlock()));
             }
         });
     }

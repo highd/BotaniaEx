@@ -1,6 +1,5 @@
 package com.github.highd120.block;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,9 +7,10 @@ import org.lwjgl.opengl.GL11;
 
 import com.github.highd120.Lexicon;
 import com.github.highd120.item.ShotSwordItem;
+import com.github.highd120.network.NetworkCreateItemEffect;
+import com.github.highd120.network.NetworkHandler;
 import com.github.highd120.util.CollectionUtil;
 import com.github.highd120.util.Constant;
-import com.github.highd120.util.EntityUtil;
 import com.github.highd120.util.ItemUtil;
 import com.github.highd120.util.MathUtil;
 import com.github.highd120.util.NbtTagUtil;
@@ -20,15 +20,12 @@ import com.github.highd120.util.subtile.SubTileRegister;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -43,40 +40,13 @@ import vazkii.botania.api.subtile.SubTileFunctional;
  */
 @SubTileRegister(name = SubTileBindSword.NAME)
 public class SubTileBindSword extends SubTileFunctional {
-    public static class LockEntity {
-        private Entity entity;
-        private BlockPos postion;
-
-        public LockEntity(Entity entity, BlockPos postion) {
-            this.entity = entity;
-            this.postion = postion;
-        }
-
-        /**
-         * 更新。
-         */
-        void upDate() {
-            if (entity != null) {
-                entity.setPosition(postion.getX() + 0.5, postion.getY() + 0.5, postion.getZ());
-                if (entity.isDead) {
-                    entity = null;
-                }
-            }
-        }
-    }
-
     public static final String NAME = "bindsword";
     private static final int RANGE = 1;
     private boolean isDisassemble = false;
-    private List<Runnable> runnableList = new ArrayList<>();
-    private List<LockEntity> entityList = new ArrayList<>();
 
     @Override
     public void onUpdate() {
         super.onUpdate();
-        runnableList.forEach(Runnable::run);
-        runnableList.clear();
-        entityList.forEach(LockEntity::upDate);
         if (mana < getMaxMana()) {
             return;
         }
@@ -90,25 +60,12 @@ public class SubTileBindSword extends SubTileFunctional {
     }
 
     /**
-     * 分解の処理のイベントの追加。
-     * @param itemStack 分解後のアイテム。
-     */
-    private void addDisassembleItemRunnable(ItemStack itemStack) {
-        runnableList.add(() -> {
-            ItemStack inner = NbtTagUtil.getInnerItem(Constant.SHOT_SWORD_TAG, itemStack).get();
-            NbtTagUtil.removeTag(Constant.SHOT_SWORD_TAG, itemStack);
-            ItemUtil.dropItem(getWorld(), getPos(), inner);
-            mana = 0;
-        });
-    }
-
-    /**
      * エフェクトの発生。
      * @param postion 座標。
      */
-    private void spawnParticle(Vec3d postion) {
-        getWorld().spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, postion.xCoord, postion.yCoord,
-                postion.zCoord, 0.0D, 0.0D, 0.0D, 10);
+    private void spawnParticle() {
+        NetworkHandler.sendToNearby(getWorld(), getPos().add(0, 1, 0),
+                new NetworkCreateItemEffect(getPos().add(0, 1, 0)));
     }
 
     /**
@@ -132,12 +89,17 @@ public class SubTileBindSword extends SubTileFunctional {
             Optional<ItemStack> inner = NbtTagUtil.getInnerItem(Constant.SHOT_SWORD_TAG, itemStack);
             return inner.isPresent();
         }).ifPresent(item -> {
-            entityList.add(new LockEntity(item, getPos().add(0, 1, 0)));
-            if (this.getWorld().isRemote) {
-                spawnParticle(EntityUtil.getPositon(item));
-            } else {
+            if (!getWorld().isRemote) {
+                spawnParticle();
                 playSound();
-                addDisassembleItemRunnable(item.getEntityItem());
+                ItemStack itemStack = item.getEntityItem();
+                ItemStack inner = NbtTagUtil.getInnerItem(Constant.SHOT_SWORD_TAG, itemStack).get();
+                NbtTagUtil.removeTag(Constant.SHOT_SWORD_TAG, itemStack);
+                Vec3d postion = MathUtil.blockPosToVec3dCenter(getPos().add(0, 1, 0));
+                EntityItem result = ItemUtil.dropItem(getWorld(), postion, inner);
+                result.setNoGravity(true);
+                result.setVelocity(0, 0, 0);
+                mana = 0;
             }
         });
     }
@@ -162,20 +124,17 @@ public class SubTileBindSword extends SubTileFunctional {
             return;
         }
         mana = 0;
-        entityList.add(new LockEntity(dropShotSword, getPos().add(0, 1, 0)));
-        if (this.getWorld().isRemote) {
-            getWorld().spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, dropShotSword.posX,
-                    dropShotSword.posY,
-                    dropShotSword.posZ, 0.0D, 0.0D, 0.0D, 10);
-        } else {
-            runnableList.add(() -> {
-                getWorld().playSound(null, getPos(), BotaniaSoundEvents.terrasteelCraft,
-                        SoundCategory.BLOCKS, 0.2F,
-                        1F);
-                NbtTagUtil.setInnerItem(Constant.SHOT_SWORD_TAG, dropShotSword.getEntityItem(),
-                        sword.getEntityItem());
-                sword.setDead();
-            });
+        if (!getWorld().isRemote) {
+            spawnParticle();
+            getWorld().playSound(null, getPos(), BotaniaSoundEvents.terrasteelCraft,
+                    SoundCategory.BLOCKS, 0.2F, 1F);
+            NbtTagUtil.setInnerItem(Constant.SHOT_SWORD_TAG, dropShotSword.getEntityItem(),
+                    sword.getEntityItem());
+            sword.setDead();
+            dropShotSword.setNoGravity(true);
+            dropShotSword.setVelocity(0, 0, 0);
+            dropShotSword.setPosition(getPos().getX() + 0.5, getPos().getY() + 1,
+                    getPos().getZ() + 0.5);
         }
     }
 

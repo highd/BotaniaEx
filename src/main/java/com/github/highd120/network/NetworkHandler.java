@@ -25,6 +25,9 @@ public class NetworkHandler {
         HANDLER.registerMessage(NetworkInjectionEffectEnd.Handler.class,
                 NetworkInjectionEffectEnd.class,
                 id++, Side.CLIENT);
+        HANDLER.registerMessage(NetworkCreateItemEffect.Handler.class,
+                NetworkCreateItemEffect.class,
+                id++, Side.CLIENT);
     }
 
     /**
