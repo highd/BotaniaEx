@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "botaniaex:items/extra0",
+    "layer1": "botaniaex:items/extra4",
+    "layer2": "botaniaex:items/extra3"
+  }
+}

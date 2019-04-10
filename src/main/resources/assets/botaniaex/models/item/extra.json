@@ -1,0 +1,92 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "botaniaex:items/extra0"
+  },
+  "overrides": [{
+    "predicate": {
+      "botaniaex:type": 0
+    },
+    "model": "botaniaex:item/extra_0"
+  },{
+    "predicate": {
+      "botaniaex:type": 1
+    },
+    "model": "botaniaex:item/extra_1"
+  },{
+    "predicate": {
+      "botaniaex:type": 2
+    },
+    "model": "botaniaex:item/extra_2"
+  },{
+    "predicate": {
+      "botaniaex:type": 3
+    },
+    "model": "botaniaex:item/extra_3"
+  },{
+    "predicate": {
+      "botaniaex:type": 4
+    },
+    "model": "botaniaex:item/extra_4"
+  },{
+    "predicate": {
+      "botaniaex:type": 5
+    },
+    "model": "botaniaex:item/extra_5"
+  },{
+    "predicate": {
+      "botaniaex:type": 6
+    },
+    "model": "botaniaex:item/extra_6"
+  },{
+    "predicate": {
+      "botaniaex:type": 7
+    },
+    "model": "botaniaex:item/extra_7"
+  },{
+    "predicate": {
+      "botaniaex:type": 8
+    },
+    "model": "botaniaex:item/extra_8"
+  },{
+    "predicate": {
+      "botaniaex:type": 9
+    },
+    "model": "botaniaex:item/extra_9"
+  },{
+    "predicate": {
+      "botaniaex:type": 10
+    },
+    "model": "botaniaex:item/extra_10"
+  },{
+    "predicate": {
+      "botaniaex:type": 11
+    },
+    "model": "botaniaex:item/extra_11"
+  },{
+    "predicate": {
+      "botaniaex:type": 12
+    },
+    "model": "botaniaex:item/extra_12"
+  },{
+    "predicate": {
+      "botaniaex:type": 13
+    },
+    "model": "botaniaex:item/extra_13"
+  },{
+    "predicate": {
+      "botaniaex:type": 14
+    },
+    "model": "botaniaex:item/extra_14"
+  },{
+    "predicate": {
+      "botaniaex:type": 15
+    },
+    "model": "botaniaex:item/extra_15"
+  },{
+    "predicate": {
+      "botaniaex:type": 16
+    },
+    "model": "botaniaex:item/extra_0"
+  }]
+}

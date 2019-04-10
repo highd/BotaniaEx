@@ -262,4 +262,36 @@ public class NbtTagUtil {
         stack.writeToNBT(child);
         tag.setTag(key, child);
     }
+
+    /**
+     * NBTタグから数字の取得。
+     * @param key キー。
+     * @param stack アイテム。
+     * @return 数字。
+     */
+    public static Optional<Integer> getInterger(String key, ItemStack stack) {
+        NBTTagCompound compound = stack.getTagCompound();
+        if (compound == null) {
+            return Optional.empty();
+        }
+        if (!compound.hasKey(key)) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(compound.getInteger(key));
+    }
+
+    /**
+     * NBTタグから数字の取得。
+     * @param key キー。
+     * @param stack アイテム。
+     * @param value 数字。
+     */
+    public static void setInterger(String key, ItemStack stack, int value) {
+        NBTTagCompound compound = stack.getTagCompound();
+        if (compound == null) {
+            compound = new NBTTagCompound();
+            stack.setTagCompound(compound);
+        }
+        compound.setInteger(key, value);
+    }
 }
