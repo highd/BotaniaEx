@@ -15,8 +15,12 @@ tile.botania:flower.fallingblock.reference=Test Messeage.
 tile.botania:flower.createmanafluid.name=マナリカリア
 tile.botania:flower.createmanafluid.reference=Test Messeage.
 
-achievement.botaniaex:shotsword=Archivement
-achievement.botaniaex:shotsword.desc=Archivement Desc.
+achievement.botaniaex:shotsword=アルカリレットウセイ
+achievement.botaniaex:shotsword.desc=剣の矢を作成する。
+achievement.botaniaex:rune=このふざけた素晴らしき世界は、僕の為にある
+achievement.botaniaex:rune.desc=真理のルーンを作成する。
+achievement.botaniaex:injection=炉心融解
+achievement.botaniaex:injection.desc=マナ注入装置を作成する。
 
 
 lexicon.shot_sword.name=剣の矢

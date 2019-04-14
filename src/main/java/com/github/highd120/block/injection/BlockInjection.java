@@ -3,12 +3,15 @@ package com.github.highd120.block.injection;
 import javax.annotation.Nonnull;
 
 import com.github.highd120.Lexicon;
+import com.github.highd120.achievement.AchievementsList;
 import com.github.highd120.block.BlockStand;
 import com.github.highd120.util.block.BlockRegister;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -18,9 +21,11 @@ import net.minecraft.world.World;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.wand.IWandable;
+import vazkii.botania.common.achievement.IPickupAchievement;
 
 @BlockRegister(name = "injection")
-public class BlockInjection extends BlockStand implements IWandable, ILexiconable {
+public class BlockInjection extends BlockStand
+        implements IWandable, ILexiconable, IPickupAchievement {
 
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
 
@@ -54,5 +59,10 @@ public class BlockInjection extends BlockStand implements IWandable, ILexiconabl
     public LexiconEntry getEntry(World world, BlockPos pos, EntityPlayer player,
             ItemStack lexicon) {
         return Lexicon.injectionEntry;
+    }
+
+    @Override
+    public Achievement getAchievementOnPickup(ItemStack arg0, EntityPlayer arg1, EntityItem arg2) {
+        return AchievementsList.injection;
     }
 }
