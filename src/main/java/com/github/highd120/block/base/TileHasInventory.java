@@ -1,11 +1,13 @@
 package com.github.highd120.block.base;
 
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 import javax.annotation.Nonnull;
 
 import com.github.highd120.util.ItemUtil;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -14,11 +16,11 @@ import net.minecraftforge.items.ItemStackHandler;
 import vazkii.botania.api.internal.VanillaPacketDispatcher;
 
 public abstract class TileHasInventory extends TileEntityBase {
-    protected ItemStackHandler itemHandler = createItemStackHandler();
+    protected SimpleItemStackHandler itemHandler = createItemStackHandler();
 
     public abstract int getInventorySize();
 
-    protected ItemStackHandler createItemStackHandler() {
+    protected SimpleItemStackHandler createItemStackHandler() {
         return new SimpleItemStackHandler(this, getInventorySize());
     }
 
@@ -51,7 +53,7 @@ public abstract class TileHasInventory extends TileEntityBase {
     }
 
     /**
-            * ブロックの破壊時のイベント。
+     * ブロックの破壊時のイベント。
      */
     public void breakEvent() {
         IntStream.range(0, itemHandler.getSlots()).forEach(i -> {
@@ -75,6 +77,34 @@ public abstract class TileHasInventory extends TileEntityBase {
                         tile.getBlockType().tickRate(tile.worldObj));
             }
             tile.markDirty();
+        }
+
+        public Optional<ItemStack> getItemStock(int slot) {
+            return Optional.ofNullable(getStackInSlot(slot));
+        }
+
+        public void setItemStock(int slot, ItemStack stack) {
+            setStackInSlot(slot, stack);
+        }
+
+        public void emptyItemStock(int slot) {
+            setStackInSlot(slot, null);
+        }
+
+        /**
+         * 特定スロットへのアイテムの追加。
+         * @param slot アイテム。
+         * @param add 追加数。
+         */
+        public void addItemStock(int slot, int add) {
+            ItemStack item = getStackInSlot(slot);
+            if (item == null) {
+                return;
+            }
+            item.stackSize += add;
+            if (item.stackSize == 0) {
+                emptyItemStock(slot);
+            }
         }
     }
 }

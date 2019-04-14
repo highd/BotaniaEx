@@ -4,7 +4,6 @@ import com.github.highd120.block.base.TileHasInventory;
 import com.github.highd120.util.ItemUtil;
 
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.ItemStackHandler;
 
 public class TileStand extends TileHasInventory {
     /**
@@ -16,7 +15,7 @@ public class TileStand extends TileHasInventory {
     }
 
     @Override
-    protected ItemStackHandler createItemStackHandler() {
+    protected SimpleItemStackHandler createItemStackHandler() {
         return new StandItemHandler(this, getInventorySize());
     }
 

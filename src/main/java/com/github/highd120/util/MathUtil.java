@@ -3,6 +3,7 @@ package com.github.highd120.util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 
 public class MathUtil {
     /**
@@ -44,5 +45,9 @@ public class MathUtil {
 
     public static Vec3d blockPosToVec3dCenter(BlockPos pos) {
         return new Vec3d(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+    }
+
+    public static Vec3d vec3iToVec3d(Vec3i pos) {
+        return new Vec3d(pos.getX(), pos.getY(), pos.getZ());
     }
 }

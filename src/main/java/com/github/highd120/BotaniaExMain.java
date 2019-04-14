@@ -1,6 +1,7 @@
 package com.github.highd120;
 
 import com.github.highd120.achievement.AchievementsList;
+import com.github.highd120.block.TileRockDropper;
 import com.github.highd120.block.TileStand;
 import com.github.highd120.block.injection.InjectionRecipe;
 import com.github.highd120.block.injection.TileInjection;
@@ -70,6 +71,7 @@ public class BotaniaExMain {
 
         GameRegistry.registerTileEntity(TileStand.class, MOD_ID + ".stand");
         GameRegistry.registerTileEntity(TileInjection.class, MOD_ID + ".injection");
+        GameRegistry.registerTileEntity(TileRockDropper.class, MOD_ID + ".rockDropper");
 
         SoundList.init();
         proxy.registerRenderers();

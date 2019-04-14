@@ -3,6 +3,7 @@ package com.github.highd120;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -18,6 +19,16 @@ import net.minecraft.util.text.TextComponentString;
  *
  */
 public class DebugCommand implements ICommand {
+    /**
+     * デバック出力。
+     * @param obj データ。
+     */
+    public static void debug(Object obj) {
+        if (obj != null) {
+            Minecraft.getMinecraft().thePlayer
+                    .addChatComponentMessage(new TextComponentString(obj.toString()));
+        }
+    }
 
     @Override
     public int compareTo(ICommand o) {

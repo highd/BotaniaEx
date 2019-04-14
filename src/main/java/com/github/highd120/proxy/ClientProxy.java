@@ -1,5 +1,6 @@
 package com.github.highd120.proxy;
 
+import com.github.highd120.block.TileRockDropper;
 import com.github.highd120.block.TileStand;
 import com.github.highd120.block.TileStandRenderer;
 import com.github.highd120.block.injection.TileInjection;
@@ -21,6 +22,8 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileStand.class,
                 new TileStandRenderer(0.5f));
         ClientRegistry.bindTileEntitySpecialRenderer(TileInjection.class,
+                new TileStandRenderer(0.1f));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileRockDropper.class,
                 new TileStandRenderer(0.1f));
     }
 
