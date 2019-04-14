@@ -24,7 +24,7 @@ public class InjectionCategory extends BlankRecipeCategory<InjectionRecipeWrappe
     private final IDrawable overlay;
 
     /**
-            * コンストラクター。
+     * コンストラクター。
      * @param guiHelper GUIのヘルパー。
      */
     public InjectionCategory(IGuiHelper guiHelper) {

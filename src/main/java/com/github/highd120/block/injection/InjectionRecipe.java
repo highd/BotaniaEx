@@ -63,7 +63,7 @@ public class InjectionRecipe {
     public static final List<InjectionRecipe.Data> recipes = new ArrayList<>();
 
     /**
-            * 注入レシピの作成。
+     * 注入レシピの作成。
      * @param main 注入するアイテム。
      * @param output 注入後のアイテム。
      * @param injections 注入の材料。
@@ -77,7 +77,7 @@ public class InjectionRecipe {
     }
 
     /**
-            * レシピの初期化。
+     * レシピの初期化。
      */
     public static void init() {
         recipes.add(createRecipe(new ItemStack(Items.BUCKET),

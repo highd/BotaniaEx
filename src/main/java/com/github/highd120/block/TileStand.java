@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 
 public class TileStand extends TileHasInventory {
     /**
-            * アイテムの取得。
+     * アイテムの取得。
      * @return アイテム。
      */
     public ItemStack getItem() {
@@ -24,7 +24,7 @@ public class TileStand extends TileHasInventory {
     }
 
     /**
-            * アイテムの設置のイベント。
+     * アイテムの設置のイベント。
      * @param stack プレイヤー。
      */
     public void action(ItemStack stack, boolean isCreative) {

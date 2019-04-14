@@ -27,7 +27,7 @@ public class BlockStand extends Block implements ILexiconable {
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0, 0, 0, 1, 11.0 / 16.0, 1);
 
     /**
-            * コンストラクター。
+     * コンストラクター。
      */
     public BlockStand() {
         super(Material.ROCK);
