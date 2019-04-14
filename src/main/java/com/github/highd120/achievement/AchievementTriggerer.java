@@ -18,7 +18,7 @@ public class AchievementTriggerer {
     @SubscribeEvent
     public static void onItemPickedUp(ItemPickupEvent event) {
         ItemStack stack = event.pickedUp.getEntityItem();
-        if (stack == null || stack.getItem() instanceof ItemBlock) {
+        if (stack == null || !(stack.getItem() instanceof ItemBlock)) {
             return;
         }
         Block block = ((ItemBlock) stack.getItem()).getBlock();

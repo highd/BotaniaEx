@@ -9,6 +9,7 @@ import com.github.highd120.util.item.ItemManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
+import net.minecraftforge.common.MinecraftForge;
 
 /**
  * 実績の管理。
@@ -39,11 +40,17 @@ public class AchievementsList {
         injection = getAchievement(":injection", ItemManager.getItemStack(BlockInjection.class), 0,
                 2, rune);
 
-        page = new AchievementPage(BotaniaExMain.MOD_NAME, new Achievement[] {
+        Achievement[] achievementList = new Achievement[] {
                 rune,
                 shotSword,
                 injection
-        });
+        };
+        for (Achievement acievement : achievementList) {
+            acievement.registerStat();
+        }
+
+        page = new AchievementPage(BotaniaExMain.MOD_NAME, achievementList);
         AchievementPage.registerAchievementPage(page);
+        MinecraftForge.EVENT_BUS.register(AchievementTriggerer.class);
     }
 }
