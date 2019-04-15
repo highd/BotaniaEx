@@ -5,10 +5,16 @@ import java.util.List;
 import com.github.highd120.achievement.AchievementsList;
 import com.github.highd120.entity.EntitySword;
 import com.github.highd120.util.Constant;
+import com.github.highd120.util.EntityUtil;
+import com.github.highd120.util.MathUtil;
 import com.github.highd120.util.NbtTagUtil;
 import com.github.highd120.util.item.ItemRegister;
+import com.google.common.base.Predicate;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -18,6 +24,7 @@ import net.minecraft.stats.Achievement;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import vazkii.botania.api.mana.IManaUsingItem;
 import vazkii.botania.api.mana.ManaItemHandler;
@@ -50,6 +57,20 @@ public class ShotSwordItem extends Item implements IManaUsingItem, ICraftAchieve
             sword.writeEntityToNBT(entityTag);
             entityTag.setTag(Constant.SHOT_SWORD_TAG, child);
             sword.readEntityFromNBT(entityTag);
+
+            Predicate<Entity> filter = entity -> entity instanceof EntityLivingBase
+                    && entity instanceof IMob && !(entity instanceof EntityPlayer);
+
+            List<Entity> entities = world.getEntitiesInAABBexcluding(player,
+                    MathUtil.getAxisAlignedCube(player.getPosition(), 50), filter);
+
+            if (entities.size() > 0) {
+                Entity target = entities.get(0);
+                Vec3d targetPos = EntityUtil.getPositon(target);
+                Vec3d playerPos = EntityUtil.getPositon(player);
+                Vec3d vector = targetPos.subtract(playerPos);
+                sword.setThrowableHeading(vector.xCoord, vector.yCoord, vector.zCoord, 30.0f, 1.0f);
+            }
         }
         return new ActionResult<ItemStack>(EnumActionResult.PASS, itemStack);
     }

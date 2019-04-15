@@ -35,7 +35,8 @@ public class MathUtil {
      * @return
      */
     public static double angleCalculation(Vec3d vec1, Vec3d vec2) {
-        double a = vec1.xCoord * vec2.xCoord + vec1.yCoord * vec2.yCoord + vec2.zCoord;
+        double a = vec1.xCoord * vec2.xCoord + vec1.yCoord * vec2.yCoord
+                + vec1.zCoord * vec2.zCoord;
         double b = vec1.xCoord * vec1.xCoord + vec1.yCoord * vec1.yCoord
                 + vec1.zCoord * vec1.zCoord;
         double c = vec2.xCoord * vec2.xCoord + vec2.yCoord * vec2.yCoord

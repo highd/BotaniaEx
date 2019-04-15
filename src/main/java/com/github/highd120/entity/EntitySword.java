@@ -16,7 +16,6 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 /**
@@ -88,7 +87,6 @@ public class EntitySword extends EntityArrow {
                 getItem().hitEntity((EntityLivingBase) target, player);
                 if (getItem().getItem() instanceof ItemSword) {
                     float damage = 3.5F + ((ItemSword) getItem().getItem()).getDamageVsEntity();
-                    player.addChatComponentMessage(new TextComponentString(Float.toString(damage)));
                     target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
                 }
                 this.setDead();
