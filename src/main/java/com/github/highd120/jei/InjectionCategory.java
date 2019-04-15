@@ -5,7 +5,7 @@ import java.awt.Point;
 import javax.annotation.Nonnull;
 
 import com.github.highd120.BotaniaExMain;
-import com.github.highd120.block.injection.InjectionRecipe.Data;
+import com.github.highd120.block.injection.InjectionRecipeData;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -61,16 +61,16 @@ public class InjectionCategory extends BlankRecipeCategory<InjectionRecipeWrappe
     public void setRecipe(IRecipeLayout recipeLayout, InjectionRecipeWrapper recipeWrapper,
             IIngredients ingredients) {
         recipeWrapper.getIngredients(ingredients);
-        final Data recipe = Data.parseIngredient(ingredients);
+        final InjectionRecipeData recipe = InjectionRecipeData.parseIngredient(ingredients);
         IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
         itemStacks.init(0, true, 64, 52);
-        itemStacks.set(0, recipe.getInput().getMain());
-        final int inputSize = recipe.getInput().getInjectionList().size();
+        itemStacks.set(0, recipe.getMain());
+        final int inputSize = recipe.getInjectionList().size();
         double angleBetweenEach = 360.0 / inputSize;
         Point point = new Point(64, 20);
         Point center = new Point(64, 52);
         int index = 1;
-        for (ItemStack item : recipe.getInput().getInjectionList()) {
+        for (ItemStack item : recipe.getInjectionList()) {
             itemStacks.init(index, true, point.x, point.y);
             itemStacks.set(index, item);
             index += 1;

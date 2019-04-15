@@ -2,7 +2,7 @@ package com.github.highd120.jei;
 
 import javax.annotation.Nonnull;
 
-import com.github.highd120.block.injection.InjectionRecipe;
+import com.github.highd120.block.injection.InjectionRecipeData;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
@@ -13,15 +13,15 @@ import vazkii.botania.client.core.handler.HUDHandler;
 import vazkii.botania.common.block.tile.mana.TilePool;
 
 public class InjectionRecipeWrapper extends BlankRecipeWrapper {
-    private final InjectionRecipe.Data recipe;
+    private final InjectionRecipeData recipe;
 
-    public InjectionRecipeWrapper(InjectionRecipe.Data recipe) {
+    public InjectionRecipeWrapper(InjectionRecipeData recipe) {
         this.recipe = recipe;
     }
 
     @Override
     public void getIngredients(IIngredients ingredients) {
-        ingredients.setInputLists(ItemStack.class, recipe.getInput().createIngredient());
+        ingredients.setInputLists(ItemStack.class, recipe.createIngredient());
         ingredients.setOutput(ItemStack.class, recipe.getOutput());
     }
 

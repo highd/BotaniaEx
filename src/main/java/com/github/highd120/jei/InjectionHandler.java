@@ -1,15 +1,15 @@
 package com.github.highd120.jei;
 
-import com.github.highd120.block.injection.InjectionRecipe.Data;
+import com.github.highd120.block.injection.InjectionRecipeData;
 
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
 
-public class InjectionHandler implements IRecipeHandler<Data> {
+public class InjectionHandler implements IRecipeHandler<InjectionRecipeData> {
 
     @Override
-    public Class<Data> getRecipeClass() {
-        return Data.class;
+    public Class<InjectionRecipeData> getRecipeClass() {
+        return InjectionRecipeData.class;
     }
 
     @Override
@@ -18,17 +18,17 @@ public class InjectionHandler implements IRecipeHandler<Data> {
     }
 
     @Override
-    public String getRecipeCategoryUid(Data recipe) {
+    public String getRecipeCategoryUid(InjectionRecipeData recipe) {
         return getRecipeCategoryUid();
     }
 
     @Override
-    public IRecipeWrapper getRecipeWrapper(Data recipe) {
+    public IRecipeWrapper getRecipeWrapper(InjectionRecipeData recipe) {
         return new InjectionRecipeWrapper(recipe);
     }
 
     @Override
-    public boolean isRecipeValid(Data recipe) {
+    public boolean isRecipeValid(InjectionRecipeData recipe) {
         return true;
     }
 

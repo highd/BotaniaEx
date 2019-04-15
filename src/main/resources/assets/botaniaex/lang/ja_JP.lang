@@ -1,10 +1,16 @@
 item.botaniaex.shot_sword.name=剣の矢
 item.botaniaex.rune.name=真理のルーン
+item.botaniaex.extra.name=四属性のパターン
 tile.botaniaex.stand.name=注入スタンド
 tile.botaniaex.injection.name=マナ注入装置
 tile.botaniaex.rockDropper.name=リビングロックディスペンサー
 fluid.ex_mana_fluid=高濃度マナ溶液
 tile.botaniaex:ex_mana_fluid.name=高濃度マナ溶液
+
+botaniaex.wind=風
+botaniaex.fire=火
+botaniaex.dirt=土
+botaniaex.water=水
 
 tile.botania:flower.bindsword.name=バイジオン
 tile.botania:flower.bindsword.reference=Test Messeage.

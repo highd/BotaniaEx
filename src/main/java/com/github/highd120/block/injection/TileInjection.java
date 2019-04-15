@@ -16,9 +16,9 @@ import com.github.highd120.util.WorldUtil;
 import com.google.common.base.Predicates;
 
 import lombok.AllArgsConstructor;
+import lombok.Value;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -165,11 +165,14 @@ public class TileInjection extends TileStand implements ISparkAttachable {
         }
     }
 
-    private static String itemData(ItemStack stack) {
-        if (stack == null) {
-            return "";
+    @Value
+    private static class InjectionItemData implements Comparable<InjectionItemData> {
+        String name;
+
+        @Override
+        public int compareTo(InjectionItemData o) {
+            return name.compareTo(o.name);
         }
-        return stack.getItem().getRegistryName().toString();
     }
 
     /**
@@ -183,20 +186,13 @@ public class TileInjection extends TileStand implements ISparkAttachable {
         List<TileStand> standList = WorldUtil.scanTileEnity(getWorld(),
                 MathUtil.getAxisAlignedPlane(getPos(), 3),
                 tile -> tile instanceof TileStand && !(tile instanceof TileInjection));
-        List<String> itemNameList = standList.stream()
-                .map(stand -> itemData(stand.getItem()))
-                .filter(name -> !name.equals(""))
-                .sorted()
+        List<ItemStack> itemList = standList.stream()
+                .map(stand -> stand.getItem())
+                .filter(item -> item != null)
                 .collect(Collectors.toList());
-        for (InjectionRecipe.Data data : InjectionRecipe.recipes) {
-            InjectionRecipe.Input input = data.getInput();
-            Item main = input.getMain().getItem();
-            List<String> recipe = input.getInjectionList()
-                    .stream()
-                    .map(item -> itemData(item))
-                    .sorted().collect(Collectors.toList());
-            if (itemNameList.equals(recipe) && getItem().getItem() == main) {
-                resultItem = data.getOutput().copy();
+        for (InjectionRecipeData data : InjectionRecipe.recipes) {
+            if (data.checkRecipe(itemList, getItem())) {
+                resultItem = data.craft(itemList, getItem());
                 complateMane = data.getUseMana();
                 return new LaunchableResult(standList, true);
             }
