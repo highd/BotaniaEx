@@ -11,11 +11,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.World;
 
 @ItemRegister(name = "extra")
 public class ItemExtra extends Item {
@@ -38,17 +34,6 @@ public class ItemExtra extends Item {
     public ItemExtra() {
         addPropertyOverride(new ResourceLocation("botaniaex", "type"),
                 (stack, worldIn, entityIn) -> getProperty(stack));
-    }
-
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn,
-            EntityPlayer playerIn, EnumHand hand) {
-        int data = NbtTagUtil.getInterger("type", itemStackIn).orElse(0);
-
-        NbtTagUtil.setInterger("type", itemStackIn, (data + 1) % 16);
-        playerIn.addChatMessage(new TextComponentString(Integer.toString(data)));
-
-        return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
     }
 
     @Override
@@ -97,10 +82,8 @@ public class ItemExtra extends Item {
     public static ItemStack setType(ItemStack stack, Type type) {
         ItemStack result = stack.copy();
         int mask = 1 << type.ordinal();
-        int data = NbtTagUtil.getInterger("type", stack)
-                .map(n -> n | mask)
-                .orElse(0);
-        NbtTagUtil.setInterger("type", result, data);
+        int data = NbtTagUtil.getInterger("type", stack).orElse(0);
+        NbtTagUtil.setInterger("type", result, data | mask);
         return result;
     }
 

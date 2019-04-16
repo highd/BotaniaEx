@@ -36,7 +36,7 @@ public class TileStand extends TileHasInventory {
                 stack.stackSize--;
             }
         } else if (getItem() != null) {
-            ItemUtil.dropItem(worldObj, pos, getItem());
+            ItemUtil.dropItem(worldObj, pos.add(0, 1, 0), getItem());
             itemHandler.setStackInSlot(0, null);
         }
     }
