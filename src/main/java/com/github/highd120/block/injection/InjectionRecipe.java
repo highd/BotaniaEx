@@ -12,6 +12,7 @@ import com.github.highd120.util.item.ItemManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import vazkii.botania.common.block.ModBlocks;
 import vazkii.botania.common.item.ModItems;
 
 /**
@@ -56,7 +57,7 @@ public class InjectionRecipe {
                 40000,
                 new ItemStack(Blocks.DIAMOND_BLOCK), new ItemStack(ModItems.terraSword),
                 new ItemStack(Items.GOLDEN_APPLE), ItemManager.getItemStack(RuneItem.class),
-                new ItemStack(ModItems.manaGun)));
+                new ItemStack(ModBlocks.storage, 1, 4)));
 
         recipes.add(createRecipe(new ItemStack(ModItems.dice),
                 new ItemStack(ModItems.lokiRing),
@@ -82,16 +83,38 @@ public class InjectionRecipe {
                 new ItemStack(Blocks.DIAMOND_BLOCK), new ItemStack(ModItems.crystalBow),
                 new ItemStack(Items.ENDER_EYE), ItemManager.getItemStack(RuneItem.class)));
 
+        recipes.add(createRecipe(new ItemStack(ModItems.dice),
+                new ItemStack(ModItems.flugelEye),
+                40000,
+                new ItemStack(Blocks.DIAMOND_BLOCK), new ItemStack(ModItems.rainbowRod),
+                new ItemStack(Items.ENDER_EYE), ItemManager.getItemStack(RuneItem.class)));
+
         recipes.add(ItemExtraInjection.createRecipe(ItemExtra.Type.FIRE, 40000,
-                new ItemStack(Items.MAGMA_CREAM)));
+                new ItemStack(ModItems.rune, 1, 1),
+                new ItemStack(Items.SLIME_BALL),
+                new ItemStack(ModItems.manaResource, 1, 14),
+                new ItemStack(ModItems.manaResource, 1, 12),
+                new ItemStack(ModItems.manaResource, 1, 15)));
 
         recipes.add(ItemExtraInjection.createRecipe(ItemExtra.Type.WATER, 40000,
-                new ItemStack(Items.WATER_BUCKET)));
+                new ItemStack(ModItems.rune, 1, 0),
+                new ItemStack(Items.SLIME_BALL),
+                new ItemStack(ModItems.manaResource, 1, 14),
+                new ItemStack(ModItems.manaResource, 1, 12),
+                new ItemStack(ModItems.manaResource, 1, 15)));
 
         recipes.add(ItemExtraInjection.createRecipe(ItemExtra.Type.DIRT, 40000,
-                new ItemStack(Items.APPLE)));
+                new ItemStack(ModItems.rune, 1, 2),
+                new ItemStack(Items.SLIME_BALL),
+                new ItemStack(ModItems.manaResource, 1, 14),
+                new ItemStack(ModItems.manaResource, 1, 12),
+                new ItemStack(ModItems.manaResource, 1, 15)));
 
         recipes.add(ItemExtraInjection.createRecipe(ItemExtra.Type.WIND, 40000,
-                new ItemStack(Items.ARROW)));
+                new ItemStack(ModItems.rune, 1, 3),
+                new ItemStack(Items.SLIME_BALL),
+                new ItemStack(ModItems.manaResource, 1, 14),
+                new ItemStack(ModItems.manaResource, 1, 12),
+                new ItemStack(ModItems.manaResource, 1, 15)));
     }
 }

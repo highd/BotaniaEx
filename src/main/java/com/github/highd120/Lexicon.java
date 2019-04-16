@@ -18,6 +18,7 @@ import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.lexicon.LexiconPage;
 import vazkii.botania.api.recipe.RecipePetals;
 import vazkii.botania.api.recipe.RecipeRuneAltar;
+import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 
 /**
  * レキシコンのリスト。
@@ -88,16 +89,17 @@ public class Lexicon {
                 ItemManager.getItemStack(BlockInjection.class), 2, RecipeList.injectionCoreRecipe,
                 BotaniaAPI.categoryMana);
 
-        bindSwordEntry = createEntryPetal("bindsword", RecipeList.getFlower(SubTileBindSword.NAME),
-                2, RecipeList.bindSwordFlowerRecipe, BotaniaAPI.categoryFunctionalFlowers);
+        bindSwordEntry = createEntryPetal("bindsword",
+                ItemBlockSpecialFlower.ofType(SubTileBindSword.NAME), 2,
+                RecipeList.bindSwordFlowerRecipe, BotaniaAPI.categoryFunctionalFlowers);
 
         createManaFlowerEntry = createEntryPetal("createmanafluid",
-                RecipeList.getFlower(SubTileCreateManaFluid.NAME), 2,
+                ItemBlockSpecialFlower.ofType(SubTileCreateManaFluid.NAME), 2,
                 RecipeList.createManaFlowerRecipe, BotaniaAPI.categoryFunctionalFlowers);
 
         fallingBlockEntry = createEntryPetal("fallingblock",
-                RecipeList.getFlower(SubTileFallingBlock.NAME),
-                2, RecipeList.fallingBlockRecipe, BotaniaAPI.categoryGenerationFlowers);
+                ItemBlockSpecialFlower.ofType(SubTileFallingBlock.NAME), 2,
+                RecipeList.fallingBlockRecipe, BotaniaAPI.categoryGenerationFlowers);
 
         shotSwordEntry = createEntryCraft("shot_sword",
                 ItemManager.getItemStack(ShotSwordItem.class), 1, RecipeList.shotSwordRecipe,
