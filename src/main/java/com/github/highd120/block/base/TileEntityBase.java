@@ -10,6 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import vazkii.botania.api.internal.VanillaPacketDispatcher;
 
 public abstract class TileEntityBase extends TileEntity implements ITickable {
     @Override
@@ -44,18 +45,25 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
     public void subReadNbt(NBTTagCompound compound) {
     }
 
+    /**
+     * ブロックの更新。
+     */
+    public void blockUpdate() {
+        VanillaPacketDispatcher.dispatchTEToNearbyPlayers(getWorld(), pos);
+        getWorld().scheduleUpdate(getPos(), getBlockType(),
+                getBlockType().tickRate(getWorld()));
+    }
+
     @Override
     public final SPacketUpdateTileEntity getUpdatePacket() {
         NBTTagCompound tag = new NBTTagCompound();
         subWriteNbt(tag);
-        //System.out.println(tag.toString());
         return new SPacketUpdateTileEntity(pos, -999, tag);
     }
 
     @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
         super.onDataPacket(net, packet);
-        //System.out.println(packet.getNbtCompound().toString());
         subReadNbt(packet.getNbtCompound());
     }
 }
