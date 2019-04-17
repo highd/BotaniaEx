@@ -13,12 +13,15 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import vazkii.botania.api.state.BotaniaStateProps;
 
 @BlockRegister(name = "rockDropper")
 public class BlockRockDropper extends BlockStand {
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
     public static final PropertyBool TRIGGERED = PropertyBool.create("triggered");
 
     /**
@@ -36,6 +39,12 @@ public class BlockRockDropper extends BlockStand {
     @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
+    }
+
+    @Nonnull
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return AABB;
     }
 
     @Override
