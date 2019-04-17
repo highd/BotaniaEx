@@ -1,10 +1,12 @@
 package com.github.highd120;
 
+import com.github.highd120.block.BlockRockDropper;
 import com.github.highd120.block.BlockStand;
 import com.github.highd120.block.SubTileBindSword;
 import com.github.highd120.block.SubTileCreateManaFluid;
 import com.github.highd120.block.SubTileFallingBlock;
 import com.github.highd120.block.injection.BlockInjection;
+import com.github.highd120.item.ItemExtra;
 import com.github.highd120.item.RuneItem;
 import com.github.highd120.item.ShotSwordItem;
 import com.github.highd120.list.RecipeList;
@@ -32,6 +34,8 @@ public class Lexicon {
     public static LexiconEntry fallingBlockEntry;
     public static LexiconEntry shotSwordEntry;
     public static LexiconEntry standEntry;
+    public static LexiconEntry extraEntry;
+    public static LexiconEntry rockDropperEntry;
 
     private static LexiconEntry createEntry(String name, ItemStack icon, int pageNumber,
             LexiconCategory category, LexiconPage lastPage) {
@@ -107,5 +111,12 @@ public class Lexicon {
 
         standEntry = createEntryCraft("stand", ItemManager.getItemStack(BlockStand.class), 1,
                 RecipeList.standCoreRecipe, BotaniaAPI.categoryMana);
+
+        extraEntry = createEntryCraft("extra", ItemManager.getItemStack(ItemExtra.class), 2,
+                RecipeList.extraRecipe, BotaniaAPI.categoryMana);
+
+        rockDropperEntry = createEntryCraft("rockDropper",
+                ItemManager.getItemStack(BlockRockDropper.class), 1,
+                RecipeList.rockDropperRecipe, BotaniaAPI.categoryMisc);
     }
 }

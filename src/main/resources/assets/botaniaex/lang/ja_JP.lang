@@ -3,14 +3,15 @@ item.botaniaex.rune.name=真理のルーン
 item.botaniaex.extra.name=四属性のパターン
 tile.botaniaex.stand.name=注入スタンド
 tile.botaniaex.injection.name=マナ注入装置
-tile.botaniaex.rockDropper.name=リビングロックディスペンサー
+tile.botaniaex.rockDropper.name=ロックドロッパー
 fluid.ex_mana_fluid=高濃度マナ溶液
-tile.botaniaex:ex_mana_fluid.name=高濃度マナ溶液
+tile.botaniaex:ex_mana_fluid_block.name=高濃度マナ溶液
 
 botaniaex.wind=風
 botaniaex.fire=火
 botaniaex.dirt=土
 botaniaex.water=水
+botaniaex:injection=ボタニアインジェクション
 
 tile.botania:flower.bindsword.name=バイジオン
 tile.botania:flower.bindsword.reference=Test Messeage.
@@ -65,3 +66,12 @@ lexicon.createmanafluid.page0=マナリカリアは水にマナを 溶かしこ�
 lexicon.createmanafluid.page1=バケツは水バケツとして返っ てくる。<br>マナ変換効率は100％で あり、マナ生産にマナは必 要としない。
 lexicon.createmanafluid.tagline=マナの液体化
 lexicon.createmanafluid.page2=レシピ
+
+lexicon.extra.name=四属性のパターン
+lexicon.extra.page0=四属性のパターンはボタニ アインジェクションでの強 化で使うアイテムだ。<br>四属性のパターンの火、水 、土、風の四属性を付与す ることができる。<br>これはボタニアインジェク ションを利用する。<br>すでに属性が付与されたパ ターンもまだ付与されてい ない属性なら追加で付与で きる。
+lexicon.extra.page1=強化する際に利用する場合 、いくつの属性がついてい るかが重要であり、どの属 性がついてあるかは関係な い。<br>属性の数が多いほど強化さ れる場合と、最低必要数が 決められている場合の二つ がある。
+lexicon.extra.page2=レシピ
+
+lexicon.rockDropper.name=ロックドロッパー
+lexicon.rockDropper.page0=ロックドロッパーの動作は バニラのドロッパーとほぼ 変わらない動作を行う。<br>異なる点はドロップしたア イテムは5秒程拾えない点 、アイテムを一つしか保持 できない点。アイテムをド ロップさせたとき上にレッ ドストーン信号を出力する 点、アイテムが飛んでいか ない点である。<br>これらの性質はルーンの祭 壇を自動化するのに便利で ある。
+lexicon.rockDropper.page1=レシピ

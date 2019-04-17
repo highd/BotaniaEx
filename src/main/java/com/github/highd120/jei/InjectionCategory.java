@@ -15,6 +15,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -40,7 +41,7 @@ public class InjectionCategory extends BlankRecipeCategory<InjectionRecipeWrappe
 
     @Override
     public String getTitle() {
-        return "Injection";
+        return I18n.format("botaniaex:injection");
     }
 
     @Override

@@ -69,7 +69,7 @@ public class FluidList {
         FluidRegistry.registerFluid(fluid);
         Block block = new BlockFluidClassic(fluid, Material.WATER);
         block.setRegistryName(new ResourceLocation(BotaniaExMain.MOD_ID, name + "_block"));
-        block.setUnlocalizedName(BotaniaExMain.MOD_ID + ":" + name + "_fluid");
+        block.setUnlocalizedName(BotaniaExMain.MOD_ID + ":" + name + "_block");
         fluid.setBlock(block);
         GameRegistry.register(block);
         ItemBlock item = new ItemBlock(block);
