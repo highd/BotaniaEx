@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.github.highd120.util.NbtTagUtil;
+import com.github.highd120.util.item.ItemManager;
 import com.github.highd120.util.item.ItemRegister;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -46,6 +48,18 @@ public class ItemExtra extends Item {
         tooltip.add(text);
     }
 
+    @Override
+    public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
+        super.getSubItems(itemIn, tab, subItems);
+        subItems.add(create(0b0001));
+        subItems.add(create(0b0010));
+        subItems.add(create(0b0100));
+        subItems.add(create(0b1000));
+        subItems.add(create(0b0011));
+        subItems.add(create(0b0111));
+        subItems.add(create(0b1111));
+    }
+
     /**
      * 属性を持っているか。
      * @param stack アイテムスタック。
@@ -60,6 +74,21 @@ public class ItemExtra extends Item {
 
     public static int getProperty(ItemStack stack) {
         return NbtTagUtil.getInterger("type", stack).orElse(0);
+    }
+
+    public static void setProperty(ItemStack stack, int data) {
+        NbtTagUtil.setInterger("type", stack, data);
+    }
+
+    /**
+     * アイテムスタックの作成。
+     * @param data 内部データ。
+     * @return アイテムスタック。
+     */
+    public static ItemStack create(int data) {
+        ItemStack stack = ItemManager.getItemStack(ItemExtra.class);
+        setProperty(stack, data);
+        return stack;
     }
 
     /**
