@@ -2,6 +2,9 @@ package com.github.highd120;
 
 import java.util.Random;
 
+import com.github.highd120.util.WorldUtil;
+
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderSurface;
@@ -24,8 +27,15 @@ public class WorldGenerator implements IWorldGenerator {
         if (!(BotaniaExConfig.createLand)) {
             return;
         }
-        BlockPos pos1 = world.getHeight(new BlockPos(x, 0, z)).add(0, 30, 0);
-        if (random.nextInt(40) == 0) {
+        BlockPos pos1 = world.getHeight(new BlockPos(x + 8, 0, z + 8)).add(0, 30, 0);
+        if (pos1.getY() > 244) {
+            return;
+        }
+        boolean isValid = WorldUtil
+                .getPostionList(new AxisAlignedBB(pos1.add(-7, 0, -7), pos1.add(7, 11, 7)))
+                .stream()
+                .allMatch(postion -> world.isAirBlock(postion));
+        if (random.nextInt(BotaniaExConfig.landSpawnRate) == 0 && isValid) {
             new StructureLand().generate(world, random, pos1);
         }
     }

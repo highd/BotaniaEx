@@ -21,11 +21,9 @@ public class StructureLand extends WorldGenerator {
 
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
-        DebugCommand.debug(position);
         if (worldIn.isRemote) {
             return false;
         }
-        position = position.add(0, 2, 0);
         Random random = new Random();
         createCircle(position, worldIn, 2, random);
         createCircle(position.add(0, 1, 0), worldIn, 4, random);
@@ -107,19 +105,19 @@ public class StructureLand extends WorldGenerator {
             return list;
         }
         BlockPos pos = list.get(0);
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             world.setBlockState(pos.add(0, i, 0), livingwood, 2);
         }
-        for (int i = 2; i < 6; i++) {
+        for (int i = 2; i < 5; i++) {
             world.setBlockState(pos.add(-1, i, 0), getPetal(color[0]), 2);
         }
-        for (int i = 2; i < 6; i++) {
+        for (int i = 2; i < 5; i++) {
             world.setBlockState(pos.add(1, i, 0), getPetal(color[1]), 2);
         }
-        for (int i = 2; i < 6; i++) {
+        for (int i = 2; i < 5; i++) {
             world.setBlockState(pos.add(0, i, -1), getPetal(color[2]), 2);
         }
-        for (int i = 2; i < 6; i++) {
+        for (int i = 2; i < 5; i++) {
             world.setBlockState(pos.add(0, i, 1), getPetal(color[3]), 2);
         }
         return list.stream()

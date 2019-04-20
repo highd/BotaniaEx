@@ -41,6 +41,23 @@ public class WorldUtil {
     }
 
     /**
+     * 範囲内の座標のリストの入手。
+     * @param box 検索範囲。
+     * @return 座標のリスト。
+     */
+    public static List<BlockPos> getPostionList(AxisAlignedBB box) {
+        List<BlockPos> postionList = new ArrayList<>();
+        for (int x = (int) box.minX; x <= box.maxX; x++) {
+            for (int y = (int) box.minY; y <= box.maxY; y++) {
+                for (int z = (int) box.minZ; z <= box.maxZ; z++) {
+                    postionList.add(new BlockPos(x, y, z));
+                }
+            }
+        }
+        return postionList;
+    }
+
+    /**
      * Botaniaのエフェクトの再生。
      * @param type 種類。
      * @param postion 座標。
