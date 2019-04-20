@@ -78,10 +78,15 @@ public class BotaniaExMain {
         proxy.registerFluid();
     }
 
+    /**
+     * 初期化。
+     * @param event イベントデータ。
+     */
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiManager());
         Lexicon.init();
+        GameRegistry.registerWorldGenerator(new WorldGenerator(), 0);
     }
 
     @EventHandler
