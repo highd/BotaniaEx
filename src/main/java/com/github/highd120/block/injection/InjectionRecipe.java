@@ -7,6 +7,7 @@ import java.util.List;
 import com.github.highd120.block.injection.InjectionRecipeData.Input;
 import com.github.highd120.item.ItemExtra;
 import com.github.highd120.item.RuneItem;
+import com.github.highd120.item.ShotSwordItem;
 import com.github.highd120.util.item.ItemManager;
 
 import net.minecraft.init.Blocks;
@@ -113,6 +114,14 @@ public class InjectionRecipe {
         recipes.add(ItemExtraInjection.createRecipe(ItemExtra.Type.WIND, 40000,
                 new ItemStack(ModItems.rune, 1, 3),
                 new ItemStack(Items.SLIME_BALL),
+                new ItemStack(ModItems.manaResource, 1, 14),
+                new ItemStack(ModItems.manaResource, 1, 12),
+                new ItemStack(ModItems.manaResource, 1, 15)));
+
+        recipes.add(InjectionAddTag.createRecipe(ShotSwordItem.HOMING_TAG, 40000,
+                InjectionAddTag.Type.OVER, 3,
+                ItemManager.getItemStack(ShotSwordItem.class),
+                new ItemStack(Items.ENDER_EYE),
                 new ItemStack(ModItems.manaResource, 1, 14),
                 new ItemStack(ModItems.manaResource, 1, 12),
                 new ItemStack(ModItems.manaResource, 1, 15)));

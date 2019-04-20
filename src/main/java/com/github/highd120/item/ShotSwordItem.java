@@ -36,6 +36,8 @@ import vazkii.botania.common.achievement.ICraftAchievement;
  */
 @ItemRegister(name = "shot_sword")
 public class ShotSwordItem extends Item implements IManaUsingItem, ICraftAchievement {
+    public static String HOMING_TAG = "HOMING";
+
     /**
      * コンストラクター。
      */
@@ -57,22 +59,28 @@ public class ShotSwordItem extends Item implements IManaUsingItem, ICraftAchieve
             sword.writeEntityToNBT(entityTag);
             entityTag.setTag(Constant.SHOT_SWORD_TAG, child);
             sword.readEntityFromNBT(entityTag);
-
-            Predicate<Entity> filter = entity -> entity instanceof EntityLivingBase
-                    && entity instanceof IMob && !(entity instanceof EntityPlayer);
-
-            List<Entity> entities = world.getEntitiesInAABBexcluding(player,
-                    MathUtil.getAxisAlignedCube(player.getPosition(), 50), filter);
-
-            if (entities.size() > 0) {
-                Entity target = entities.get(0);
-                Vec3d targetPos = EntityUtil.getPositon(target);
-                Vec3d playerPos = EntityUtil.getPositon(player);
-                Vec3d vector = targetPos.subtract(playerPos);
-                sword.setThrowableHeading(vector.xCoord, vector.yCoord, vector.zCoord, 30.0f, 1.0f);
+            if (itemStack.getTagCompound().hasKey(HOMING_TAG)) {
+                homing(world, player, sword);
             }
         }
         return new ActionResult<ItemStack>(EnumActionResult.PASS, itemStack);
+    }
+
+    private void homing(World world, EntityPlayer player, EntitySword sword) {
+        Predicate<Entity> filter = entity -> entity instanceof EntityLivingBase
+                && entity instanceof IMob && !(entity instanceof EntityPlayer);
+
+        List<Entity> entities = world.getEntitiesInAABBexcluding(player,
+                MathUtil.getAxisAlignedCube(player.getPosition(), 50), filter);
+
+        if (entities.size() > 0) {
+            Entity target = entities.get(0);
+            Vec3d targetPos = EntityUtil.getPositon(target);
+            Vec3d playerPos = EntityUtil.getPositon(player);
+            Vec3d vector = targetPos.subtract(playerPos);
+            sword.setThrowableHeading(vector.xCoord, vector.yCoord, vector.zCoord, 30.0f,
+                    1.0f);
+        }
     }
 
     @Override
@@ -82,6 +90,9 @@ public class ShotSwordItem extends Item implements IManaUsingItem, ICraftAchieve
         ItemStack inner = ItemStack.loadItemStackFromNBT(child);
         if (inner != null) {
             tooltip.add(">" + inner.getDisplayName());
+        }
+        if (NbtTagUtil.getCompound(stack).hasKey(HOMING_TAG)) {
+            tooltip.add("HORMING");
         }
     }
 

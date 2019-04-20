@@ -34,6 +34,20 @@ public class NbtTagUtil {
     }
 
     /**
+     * Compoundの取得。
+     * @param stack アイテム。
+     * @return Compound。
+     */
+    public static NBTTagCompound getCompound(ItemStack stack) {
+        NBTTagCompound compound = stack.getTagCompound();
+        if (compound == null) {
+            compound = new NBTTagCompound();
+            stack.setTagCompound(compound);
+        }
+        return compound;
+    }
+
+    /**
      * NBTタグから文字列の取得。
      * @param key キー。
      * @param stack アイテム。
