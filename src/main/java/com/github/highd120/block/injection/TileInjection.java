@@ -17,12 +17,12 @@ import com.github.highd120.util.WorldUtil;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;
-import lombok.experimental.Delegate;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import vazkii.botania.api.mana.spark.ISparkAttachable;
+import vazkii.botania.api.mana.spark.ISparkEntity;
 import vazkii.botania.api.sound.BotaniaSoundEvents;
 
 public class TileInjection extends TileStand implements ISparkAttachable, SparkManager.IOverride {
@@ -35,7 +35,6 @@ public class TileInjection extends TileStand implements ISparkAttachable, SparkM
 
     private ItemStack resultItem;
     private InjectionState state = InjectionState.NOT_WORKING;
-    @Delegate(types = ISparkAttachable.class)
     private SparkManager sparkManager;
     private int complateMane;
     private int soundCount = 0;
@@ -184,5 +183,50 @@ public class TileInjection extends TileStand implements ISparkAttachable, SparkM
     @Override
     public boolean canRecieveMana() {
         return state == InjectionState.CHARGE_MANA;
+    }
+
+    @Override
+    public boolean canRecieveManaFromBursts() {
+        return sparkManager.canRecieveManaFromBursts();
+    }
+
+    @Override
+    public boolean isFull() {
+        return sparkManager.isFull();
+    }
+
+    @Override
+    public void recieveMana(int arg0) {
+        sparkManager.recieveMana(arg0);
+    }
+
+    @Override
+    public int getCurrentMana() {
+        return sparkManager.getCurrentMana();
+    }
+
+    @Override
+    public boolean areIncomingTranfersDone() {
+        return sparkManager.areIncomingTranfersDone();
+    }
+
+    @Override
+    public void attachSpark(ISparkEntity arg0) {
+        sparkManager.attachSpark(arg0);
+    }
+
+    @Override
+    public boolean canAttachSpark(ItemStack arg0) {
+        return sparkManager.canAttachSpark(arg0);
+    }
+
+    @Override
+    public ISparkEntity getAttachedSpark() {
+        return sparkManager.getAttachedSpark();
+    }
+
+    @Override
+    public int getAvailableSpaceForMana() {
+        return sparkManager.getAvailableSpaceForMana();
     }
 }
