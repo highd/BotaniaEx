@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.github.highd120.BotaniaExMain;
+import com.github.highd120.item.ItemBase;
 import com.github.highd120.util.ClassUtil;
 import com.github.highd120.util.block.BlockManager;
 
@@ -30,7 +31,8 @@ public class ItemManager {
     public static void init(boolean isClient) {
         classList.forEach(clazz -> {
             Object obj = ClassUtil.newInstance(clazz);
-            String name = clazz.getAnnotation(ItemRegister.class).name();
+            ItemRegister itemRegister = clazz.getAnnotation(ItemRegister.class);
+            String name = itemRegister.name();
             if (obj instanceof Item) {
                 Item item = (Item) obj;
                 item.setRegistryName(new ResourceLocation(BotaniaExMain.MOD_ID, name));
@@ -38,8 +40,12 @@ public class ItemManager {
                 GameRegistry.register(item);
                 itemMap.put(clazz, item);
                 if (isClient) {
-                    ModelLoader.setCustomModelResourceLocation(item, 0,
-                            new ModelResourceLocation(item.getRegistryName(), "inventory"));
+                    if (item instanceof ItemBase) {
+                        ((ItemBase) item).registerModel();
+                    } else {
+                        ModelLoader.setCustomModelResourceLocation(item, 0,
+                                new ModelResourceLocation(item.getRegistryName(), "inventory"));
+                    }
 
                 }
             } else {
@@ -47,6 +53,7 @@ public class ItemManager {
             }
         });
         BlockManager.itemBlocInit(itemMap, isClient);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -56,5 +63,9 @@ public class ItemManager {
 
     public static <T> ItemStack getItemStack(Class<T> clazz) {
         return new ItemStack((Item) getItem(clazz));
+    }
+
+    public static <T> ItemStack getItemStack(Class<T> clazz, int meta) {
+        return new ItemStack((Item) getItem(clazz), 1, meta);
     }
 }

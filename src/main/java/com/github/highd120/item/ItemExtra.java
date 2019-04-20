@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 @ItemRegister(name = "extra")
-public class ItemExtra extends Item {
+public class ItemExtra extends ItemBase {
     public static enum Type {
         WIND("wind"), FIRE("fire"), DIRT("dirt"), WATER("water");
 

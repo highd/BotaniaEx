@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.github.highd120.block.injection.InjectionRecipeData.Input;
 import com.github.highd120.item.ItemExtra;
+import com.github.highd120.item.ItemInjectionResource;
 import com.github.highd120.item.RuneItem;
 import com.github.highd120.item.ShotSwordItem;
 import com.github.highd120.util.item.ItemManager;
@@ -121,6 +122,7 @@ public class InjectionRecipe {
         recipes.add(InjectionAddTag.createRecipe(ShotSwordItem.HOMING_TAG, 40000,
                 InjectionAddTag.Type.OVER, 3,
                 ItemManager.getItemStack(ShotSwordItem.class),
+                ItemManager.getItemStack(ItemInjectionResource.class, 0),
                 new ItemStack(Items.ENDER_EYE),
                 new ItemStack(ModItems.manaResource, 1, 14),
                 new ItemStack(ModItems.manaResource, 1, 12),

@@ -1,6 +1,7 @@
 package com.github.highd120.block;
 
 import com.github.highd120.block.base.TileHasInventory;
+import com.github.highd120.item.ItemInjectionResource;
 import com.github.highd120.util.ItemUtil;
 
 import net.minecraft.item.ItemStack;
@@ -63,7 +64,12 @@ public class TileStand extends TileHasInventory {
 
     }
 
+    /**
+     * アイテムの削除。
+     */
     public void removeItem() {
-        itemHandler.setStackInSlot(0, null);
+        if (getItem() != null && !(getItem().getItem() instanceof ItemInjectionResource)) {
+            itemHandler.setStackInSlot(0, null);
+        }
     }
 }

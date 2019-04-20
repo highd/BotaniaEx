@@ -17,7 +17,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.Achievement;
@@ -35,7 +34,7 @@ import vazkii.botania.common.achievement.ICraftAchievement;
  * @author hdgam
  */
 @ItemRegister(name = "shot_sword")
-public class ShotSwordItem extends Item implements IManaUsingItem, ICraftAchievement {
+public class ShotSwordItem extends ItemBase implements IManaUsingItem, ICraftAchievement {
     public static String HOMING_TAG = "HOMING";
 
     /**

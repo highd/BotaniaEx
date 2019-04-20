@@ -7,6 +7,7 @@ import com.github.highd120.block.SubTileCreateManaFluid;
 import com.github.highd120.block.SubTileFallingBlock;
 import com.github.highd120.block.injection.BlockInjection;
 import com.github.highd120.item.ItemExtra;
+import com.github.highd120.item.ItemInjectionResource;
 import com.github.highd120.item.RuneItem;
 import com.github.highd120.item.ShotSwordItem;
 import com.github.highd120.util.item.ItemManager;
@@ -19,6 +20,7 @@ import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.recipe.RecipePetals;
 import vazkii.botania.api.recipe.RecipeRuneAltar;
 import vazkii.botania.common.block.ModBlocks;
+import vazkii.botania.common.item.ModItems;
 import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 
 /**
@@ -29,6 +31,7 @@ public class RecipeList {
     public static RecipeRuneAltar runeRecipe;
     public static RecipeRuneAltar injectionCoreRecipe;
     public static ShapedOreRecipe standCoreRecipe;
+    public static ShapedOreRecipe homingRecipe;
     public static ShapedOreRecipe shotSwordRecipe;
     public static RecipePetals bindSwordFlowerRecipe;
     public static RecipePetals createManaFlowerRecipe;
@@ -55,6 +58,17 @@ public class RecipeList {
                 new ItemStack(ModBlocks.shimmerrock), "livingwood",
                 new ItemStack(ModBlocks.shimmerrock), "livingwood",
                 ItemManager.getItemStack(RuneItem.class));
+
+        homingRecipe = new ShapedOreRecipe(
+                ItemManager.getItemStack(ItemInjectionResource.class, 0),
+                new Object[] {
+                        "XXX",
+                        "XYX",
+                        "XXX",
+                        Character.valueOf('X'),
+                        "stone",
+                        Character.valueOf('Y'),
+                        new ItemStack(ModItems.crystalBow) });
 
         standCoreRecipe = new ShapedOreRecipe(ItemManager.getItemStack(BlockStand.class),
                 new Object[] {
@@ -109,6 +123,7 @@ public class RecipeList {
         GameRegistry.addRecipe(standCoreRecipe);
         GameRegistry.addRecipe(rockDropperRecipe);
         GameRegistry.addRecipe(extraRecipe);
+        GameRegistry.addRecipe(homingRecipe);
 
         ItemStack createManaFlower = getFlower(SubTileCreateManaFluid.NAME);
         createManaFlowerRecipe = BotaniaAPI.registerPetalRecipe(createManaFlower,

@@ -1,6 +1,8 @@
 item.botaniaex.shot_sword.name=剣の矢
 item.botaniaex.rune.name=真理のルーン
 item.botaniaex.extra.name=四属性のパターン
+item.botaniaex.homing.name=ホーミングの強化
+item.botaniaex.powerUp.name=攻撃力の強化
 tile.botaniaex.stand.name=注入スタンド
 tile.botaniaex.injection.name=マナ注入装置
 tile.botaniaex.rockDropper.name=ロックドロッパー
