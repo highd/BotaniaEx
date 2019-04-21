@@ -21,6 +21,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import vazkii.botania.api.mana.spark.ISparkAttachable;
 import vazkii.botania.api.mana.spark.ISparkEntity;
 import vazkii.botania.api.sound.BotaniaSoundEvents;
@@ -183,6 +184,16 @@ public class TileInjection extends TileStand implements ISparkAttachable, SparkM
     @Override
     public boolean canRecieveMana() {
         return state == InjectionState.CHARGE_MANA;
+    }
+
+    @Override
+    public World getWorldObj() {
+        return super.getWorld();
+    }
+
+    @Override
+    public BlockPos getPostion() {
+        return super.getPos();
     }
 
     @Override

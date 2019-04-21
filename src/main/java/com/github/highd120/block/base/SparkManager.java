@@ -19,9 +19,9 @@ public class SparkManager implements ISparkAttachable {
     public interface IOverride {
         boolean canRecieveMana();
 
-        BlockPos getPos();
+        BlockPos getPostion();
 
-        World getWorld();
+        World getWorldObj();
     }
 
     private int mana = 0;
@@ -54,10 +54,10 @@ public class SparkManager implements ISparkAttachable {
         if (spark == null) {
             return;
         }
-        List<ISparkEntity> sparkEntities = SparkHelper.getSparksAround(tileEntity.getWorld(),
-                tileEntity.getPos().getX() + 0.5,
-                tileEntity.getPos().getY() + 0.5,
-                tileEntity.getPos().getZ() + 0.5);
+        List<ISparkEntity> sparkEntities = SparkHelper.getSparksAround(tileEntity.getWorldObj(),
+                tileEntity.getPostion().getX() + 0.5,
+                tileEntity.getPostion().getY() + 0.5,
+                tileEntity.getPostion().getZ() + 0.5);
         for (ISparkEntity otherSpark : sparkEntities) {
             if (spark == otherSpark) {
                 continue;
@@ -112,8 +112,9 @@ public class SparkManager implements ISparkAttachable {
 
     @Override
     public ISparkEntity getAttachedSpark() {
-        List<Entity> sparks = tileEntity.getWorld().getEntitiesWithinAABB(Entity.class,
-                new AxisAlignedBB(tileEntity.getPos().up(), tileEntity.getPos().up().add(1, 1, 1)),
+        List<Entity> sparks = tileEntity.getWorldObj().getEntitiesWithinAABB(Entity.class,
+                new AxisAlignedBB(tileEntity.getPostion().up(),
+                        tileEntity.getPostion().up().add(1, 1, 1)),
                 Predicates.instanceOf(ISparkEntity.class));
         if (sparks.size() == 1) {
             Entity e = sparks.get(0);
