@@ -34,13 +34,13 @@ import vazkii.botania.common.achievement.ICraftAchievement;
  * @author hdgam
  */
 @ItemRegister(name = "shot_sword")
-public class ShotSwordItem extends ItemBase implements IManaUsingItem, ICraftAchievement {
+public class ItemShotSword extends ItemBase implements IManaUsingItem, ICraftAchievement {
     public static String HOMING_TAG = "HOMING";
 
     /**
      * コンストラクター。
      */
-    public ShotSwordItem() {
+    public ItemShotSword() {
         setMaxStackSize(1);
         setNoRepair();
         setCreativeTab(CreativeTabs.COMBAT);
@@ -51,11 +51,12 @@ public class ShotSwordItem extends ItemBase implements IManaUsingItem, ICraftAch
             EntityPlayer player, EnumHand hand) {
         if (!world.isRemote
                 && ManaItemHandler.requestManaExactForTool(itemStack, player, 1000, true)) {
-            NBTTagCompound child = NbtTagUtil.getCompound(Constant.SHOT_SWORD_TAG, itemStack);
+            final NBTTagCompound child = NbtTagUtil.getCompound(Constant.SHOT_SWORD_TAG, itemStack);
             NBTTagCompound entityTag = new NBTTagCompound();
             EntitySword sword = new EntitySword(world, player);
             world.spawnEntityInWorld(sword);
             sword.writeEntityToNBT(entityTag);
+            sword.setNoGravity(true);
             entityTag.setTag(Constant.SHOT_SWORD_TAG, child);
             sword.readEntityFromNBT(entityTag);
             if (itemStack.getTagCompound().hasKey(HOMING_TAG)) {
@@ -77,7 +78,7 @@ public class ShotSwordItem extends ItemBase implements IManaUsingItem, ICraftAch
             Vec3d targetPos = EntityUtil.getPositon(target);
             Vec3d playerPos = EntityUtil.getPositon(player);
             Vec3d vector = targetPos.subtract(playerPos);
-            sword.setThrowableHeading(vector.xCoord, vector.yCoord, vector.zCoord, 30.0f,
+            sword.setThrowableHeading(vector.xCoord, vector.yCoord, vector.zCoord, 0.1f,
                     1.0f);
         }
     }

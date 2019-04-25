@@ -2,8 +2,8 @@ package com.github.highd120.achievement;
 
 import com.github.highd120.BotaniaExMain;
 import com.github.highd120.block.injection.BlockInjection;
-import com.github.highd120.item.RuneItem;
-import com.github.highd120.item.ShotSwordItem;
+import com.github.highd120.item.ItemRune;
+import com.github.highd120.item.ItemShotSword;
 import com.github.highd120.util.item.ItemManager;
 
 import net.minecraft.item.ItemStack;
@@ -31,10 +31,10 @@ public class AchievementsList {
      * 初期化。
      */
     public static void init() {
-        rune = getAchievement(":rune", ItemManager.getItemStack(RuneItem.class), 0,
+        rune = getAchievement(":rune", ItemManager.getItemStack(ItemRune.class), 0,
                 0, null);
 
-        shotSword = getAchievement(":shotsword", ItemManager.getItemStack(ShotSwordItem.class), 2,
+        shotSword = getAchievement(":shotsword", ItemManager.getItemStack(ItemShotSword.class), 2,
                 0, rune);
 
         injection = getAchievement(":injection", ItemManager.getItemStack(BlockInjection.class), 0,

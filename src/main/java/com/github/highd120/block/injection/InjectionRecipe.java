@@ -7,8 +7,8 @@ import java.util.List;
 import com.github.highd120.block.injection.InjectionRecipeData.Input;
 import com.github.highd120.item.ItemExtra;
 import com.github.highd120.item.ItemInjectionResource;
-import com.github.highd120.item.RuneItem;
-import com.github.highd120.item.ShotSwordItem;
+import com.github.highd120.item.ItemRune;
+import com.github.highd120.item.ItemShotSword;
 import com.github.highd120.util.item.ItemManager;
 
 import net.minecraft.init.Blocks;
@@ -58,38 +58,38 @@ public class InjectionRecipe {
                 new ItemStack(ModItems.odinRing),
                 40000,
                 new ItemStack(Blocks.DIAMOND_BLOCK), new ItemStack(ModItems.terraSword),
-                new ItemStack(Items.GOLDEN_APPLE), ItemManager.getItemStack(RuneItem.class),
+                new ItemStack(Items.GOLDEN_APPLE), ItemManager.getItemStack(ItemRune.class),
                 new ItemStack(ModBlocks.storage, 1, 4)));
 
         recipes.add(createRecipe(new ItemStack(ModItems.dice),
                 new ItemStack(ModItems.lokiRing),
                 40000,
                 new ItemStack(Blocks.DIAMOND_BLOCK), new ItemStack(ModItems.auraRing),
-                new ItemStack(Items.GOLDEN_APPLE), ItemManager.getItemStack(RuneItem.class)));
+                new ItemStack(Items.GOLDEN_APPLE), ItemManager.getItemStack(ItemRune.class)));
 
         recipes.add(createRecipe(new ItemStack(ModItems.dice),
                 new ItemStack(ModItems.thorRing),
                 40000,
                 new ItemStack(Blocks.DIAMOND_BLOCK), new ItemStack(Items.DIAMOND_PICKAXE),
-                new ItemStack(Items.BLAZE_POWDER), ItemManager.getItemStack(RuneItem.class)));
+                new ItemStack(Items.BLAZE_POWDER), ItemManager.getItemStack(ItemRune.class)));
 
         recipes.add(createRecipe(new ItemStack(ModItems.dice),
                 new ItemStack(ModItems.infiniteFruit),
                 40000,
                 new ItemStack(Blocks.DIAMOND_BLOCK), new ItemStack(ModItems.manaTablet),
-                new ItemStack(Items.GOLDEN_APPLE), ItemManager.getItemStack(RuneItem.class)));
+                new ItemStack(Items.GOLDEN_APPLE), ItemManager.getItemStack(ItemRune.class)));
 
         recipes.add(createRecipe(new ItemStack(ModItems.dice),
                 new ItemStack(ModItems.kingKey),
                 40000,
                 new ItemStack(Blocks.DIAMOND_BLOCK), new ItemStack(ModItems.crystalBow),
-                new ItemStack(Items.ENDER_EYE), ItemManager.getItemStack(RuneItem.class)));
+                new ItemStack(Items.ENDER_EYE), ItemManager.getItemStack(ItemRune.class)));
 
         recipes.add(createRecipe(new ItemStack(ModItems.dice),
                 new ItemStack(ModItems.flugelEye),
                 40000,
                 new ItemStack(Blocks.DIAMOND_BLOCK), new ItemStack(ModItems.rainbowRod),
-                new ItemStack(Items.ENDER_EYE), ItemManager.getItemStack(RuneItem.class)));
+                new ItemStack(Items.ENDER_EYE), ItemManager.getItemStack(ItemRune.class)));
 
         recipes.add(ItemExtraInjection.createRecipe(ItemExtra.Type.FIRE, 40000,
                 new ItemStack(ModItems.rune, 1, 1),
@@ -119,9 +119,9 @@ public class InjectionRecipe {
                 new ItemStack(ModItems.manaResource, 1, 12),
                 new ItemStack(ModItems.manaResource, 1, 15)));
 
-        recipes.add(InjectionAddTag.createRecipe(ShotSwordItem.HOMING_TAG, 40000,
+        recipes.add(InjectionAddTag.createRecipe(ItemShotSword.HOMING_TAG, 40000,
                 InjectionAddTag.Type.OVER, 3,
-                ItemManager.getItemStack(ShotSwordItem.class),
+                ItemManager.getItemStack(ItemShotSword.class),
                 ItemManager.getItemStack(ItemInjectionResource.class, 0),
                 new ItemStack(Items.ENDER_EYE),
                 new ItemStack(ModItems.manaResource, 1, 14),

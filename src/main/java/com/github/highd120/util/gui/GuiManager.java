@@ -13,6 +13,7 @@ import com.github.highd120.BotaniaExMain;
 import com.google.common.reflect.ClassPath;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
@@ -66,7 +67,18 @@ public class GuiManager implements IGuiHandler {
         }
     }
 
-    public static void playerOpenGui(EntityPlayer player, World world, Class<?> clazz) {
+    /**
+     * GUIを開く。
+     * @param player プレイヤー。
+     * @param world ワールド。
+     * @param hand イベントを起こした手。
+     * @param clazz GUIのクラス。
+     */
+    public static void playerOpednGui(EntityPlayer player, World world, EnumHand hand,
+            Class<?> clazz) {
+        if (hand != EnumHand.MAIN_HAND) {
+            return;
+        }
         player.openGui(BotaniaExMain.instance, classList.indexOf(clazz), world, (int) player.posX,
                 (int) player.posY, (int) player.posZ);
     }
@@ -91,6 +103,7 @@ public class GuiManager implements IGuiHandler {
                     .filter(field -> isHaveAnnotation(field.getDeclaredAnnotations(),
                             GuiField.class))
                     .forEach(filed -> GuiManager.setDiGui(instance, filed, player, world, x, y, z));
+            clazz.getMethod("init").invoke(instance);
             return instance;
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException

@@ -7,8 +7,8 @@ import com.github.highd120.block.SubTileCreateManaFluid;
 import com.github.highd120.block.SubTileFallingBlock;
 import com.github.highd120.block.injection.BlockInjection;
 import com.github.highd120.item.ItemExtra;
-import com.github.highd120.item.RuneItem;
-import com.github.highd120.item.ShotSwordItem;
+import com.github.highd120.item.ItemRune;
+import com.github.highd120.item.ItemShotSword;
 import com.github.highd120.list.RecipeList;
 import com.github.highd120.util.item.ItemManager;
 
@@ -86,7 +86,7 @@ public class Lexicon {
      * レキシコンへの登録。
      */
     public static void init() {
-        runeEntry = createEntryRune("rune", ItemManager.getItemStack(RuneItem.class), 1,
+        runeEntry = createEntryRune("rune", ItemManager.getItemStack(ItemRune.class), 1,
                 RecipeList.runeRecipe, BotaniaAPI.categoryMana);
 
         injectionEntry = createEntryRune("injection",
@@ -106,7 +106,7 @@ public class Lexicon {
                 RecipeList.fallingBlockRecipe, BotaniaAPI.categoryGenerationFlowers);
 
         shotSwordEntry = createEntryCraft("shot_sword",
-                ItemManager.getItemStack(ShotSwordItem.class), 1, RecipeList.shotSwordRecipe,
+                ItemManager.getItemStack(ItemShotSword.class), 1, RecipeList.shotSwordRecipe,
                 BotaniaAPI.categoryMana);
 
         standEntry = createEntryCraft("stand", ItemManager.getItemStack(BlockStand.class), 1,

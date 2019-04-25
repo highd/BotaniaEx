@@ -8,8 +8,8 @@ import com.github.highd120.block.SubTileFallingBlock;
 import com.github.highd120.block.injection.BlockInjection;
 import com.github.highd120.item.ItemExtra;
 import com.github.highd120.item.ItemInjectionResource;
-import com.github.highd120.item.RuneItem;
-import com.github.highd120.item.ShotSwordItem;
+import com.github.highd120.item.ItemRune;
+import com.github.highd120.item.ItemShotSword;
 import com.github.highd120.util.item.ItemManager;
 
 import net.minecraft.init.Items;
@@ -43,7 +43,7 @@ public class RecipeList {
      * レシピの登録。
      */
     public static void init() {
-        runeRecipe = BotaniaAPI.registerRuneAltarRecipe(ItemManager.getItemStack(RuneItem.class),
+        runeRecipe = BotaniaAPI.registerRuneAltarRecipe(ItemManager.getItemStack(ItemRune.class),
                 5000,
                 "runeWaterB", "runeFireB", "runeEarthB", "runeAirB",
                 "runeSpringB", "runeSummerB", "runeAutumnB", "runeWinterB",
@@ -57,7 +57,7 @@ public class RecipeList {
                 new ItemStack(ModBlocks.shimmerrock), "livingwood",
                 new ItemStack(ModBlocks.shimmerrock), "livingwood",
                 new ItemStack(ModBlocks.shimmerrock), "livingwood",
-                ItemManager.getItemStack(RuneItem.class));
+                ItemManager.getItemStack(ItemRune.class));
 
         homingRecipe = new ShapedOreRecipe(
                 ItemManager.getItemStack(ItemInjectionResource.class, 0),
@@ -81,7 +81,7 @@ public class RecipeList {
                         "logWood",
                         Character.valueOf('Z'),
                         "cobblestone" });
-        shotSwordRecipe = new ShapedOreRecipe(ItemManager.getItemStack(ShotSwordItem.class),
+        shotSwordRecipe = new ShapedOreRecipe(ItemManager.getItemStack(ItemShotSword.class),
                 new Object[] {
                         " X ",
                         "ZYZ",
@@ -89,7 +89,7 @@ public class RecipeList {
                         Character.valueOf('X'),
                         new ItemStack(Items.DIAMOND_SWORD, 1, 0),
                         Character.valueOf('Y'),
-                        ItemManager.getItemStack(RuneItem.class),
+                        ItemManager.getItemStack(ItemRune.class),
                         Character.valueOf('Z'),
                         new ItemStack(Items.STICK, 1, 0) });
 
@@ -116,7 +116,7 @@ public class RecipeList {
         ItemStack bindSwordFlower = getFlower(SubTileBindSword.NAME);
         bindSwordFlowerRecipe = BotaniaAPI.registerPetalRecipe(bindSwordFlower,
                 "petalGreen", "petalGreen", "petalBlack",
-                ItemManager.getItemStack(RuneItem.class),
+                ItemManager.getItemStack(ItemRune.class),
                 "redstoneRoot", "elvenPixieDust");
 
         GameRegistry.addRecipe(shotSwordRecipe);

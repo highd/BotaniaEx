@@ -12,7 +12,7 @@ import vazkii.botania.api.recipe.IFlowerComponent;
 import vazkii.botania.common.achievement.IPickupAchievement;
 
 @ItemRegister(name = "rune")
-public class RuneItem extends ItemBase implements IFlowerComponent, IPickupAchievement {
+public class ItemRune extends ItemBase implements IFlowerComponent, IPickupAchievement {
 
     @Override
     public boolean canFit(ItemStack stack, IPetalApothecary apothecary) {

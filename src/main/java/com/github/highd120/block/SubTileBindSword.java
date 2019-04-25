@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.lwjgl.opengl.GL11;
 
 import com.github.highd120.Lexicon;
-import com.github.highd120.item.ShotSwordItem;
+import com.github.highd120.item.ItemShotSword;
 import com.github.highd120.network.NetworkCreateItemEffect;
 import com.github.highd120.network.NetworkHandler;
 import com.github.highd120.util.CollectionUtil;
@@ -83,7 +83,7 @@ public class SubTileBindSword extends SubTileFunctional {
     private void disassemble(List<EntityItem> items) {
         CollectionUtil.findIf(items, item -> {
             ItemStack itemStack = item.getEntityItem();
-            if (itemStack.getItem() != ItemManager.getItem(ShotSwordItem.class)) {
+            if (itemStack.getItem() != ItemManager.getItem(ItemShotSword.class)) {
                 return false;
             }
             Optional<ItemStack> inner = NbtTagUtil.getInnerItem(Constant.SHOT_SWORD_TAG, itemStack);
@@ -111,7 +111,7 @@ public class SubTileBindSword extends SubTileFunctional {
     private void assemble(List<EntityItem> items) {
         EntityItem dropShotSword = CollectionUtil.findIf(items, item -> {
             ItemStack itemStack = item.getEntityItem();
-            if (itemStack.getItem() != ItemManager.getItem(ShotSwordItem.class)) {
+            if (itemStack.getItem() != ItemManager.getItem(ItemShotSword.class)) {
                 return false;
             }
             Optional<ItemStack> inner = NbtTagUtil.getInnerItem(Constant.SHOT_SWORD_TAG, itemStack);
