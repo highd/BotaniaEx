@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.github.highd120.BotaniaExMain;
@@ -24,6 +25,7 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
  */
 public class GuiManager implements IGuiHandler {
     public static List<Class<?>> classList = new ArrayList<>();
+    public static List<Class<?>> serverClassList = new ArrayList<>();
 
     static {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -33,9 +35,18 @@ public class GuiManager implements IGuiHandler {
                     .map(info -> info.load())
                     .filter(cl -> isHaveAnnotation(cl.getDeclaredAnnotations(), Gui.class))
                     .collect(Collectors.toList());
+            serverClassList = classList.stream()
+                    .map(clazz -> getServer(clazz))
+                    .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static Class<?> getServer(Class<?> clazz) {
+        return Optional.ofNullable(clazz.getAnnotation(Gui.class))
+                .map(annotation -> annotation.server())
+                .orElse(null);
     }
 
     /**
@@ -90,6 +101,23 @@ public class GuiManager implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y,
             int z) {
+        try {
+            Class<?> clazz = serverClassList.get(id);
+            if (clazz == null) {
+                return null;
+            }
+            Object instance = clazz.getDeclaredConstructor().newInstance();
+            Arrays.stream(clazz.getDeclaredFields())
+                    .filter(field -> isHaveAnnotation(field.getDeclaredAnnotations(),
+                            GuiField.class))
+                    .forEach(filed -> GuiManager.setDiGui(instance, filed, player, world, x, y, z));
+            clazz.getMethod("init").invoke(instance);
+            return instance;
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+                | InvocationTargetException
+                | NoSuchMethodException | SecurityException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

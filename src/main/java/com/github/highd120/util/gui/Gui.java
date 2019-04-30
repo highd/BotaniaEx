@@ -12,5 +12,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Gui {
-
+    /**
+     * サーバーのGUIの取得。
+     * @return サーバーのGUI。
+     */
+    Class<?> server();
 }
