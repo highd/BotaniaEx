@@ -109,6 +109,10 @@ public class NbtTagUtil {
      * @param inner 内部アイテム。
      */
     public static void setInnerItem(String key, ItemStack outer, ItemStack inner) {
+        if (inner == null) {
+            getCompound(key, outer).removeTag(key);
+            return;
+        }
         NBTTagCompound child = new NBTTagCompound();
         inner.writeToNBT(child);
         setCompound(key, outer, child);

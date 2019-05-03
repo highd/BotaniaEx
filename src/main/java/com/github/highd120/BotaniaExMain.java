@@ -6,6 +6,7 @@ import com.github.highd120.block.TileStand;
 import com.github.highd120.block.injection.InjectionRecipe;
 import com.github.highd120.block.injection.TileInjection;
 import com.github.highd120.entity.EntitySword;
+import com.github.highd120.gui.GuiEditer;
 import com.github.highd120.list.FluidList;
 import com.github.highd120.list.RecipeList;
 import com.github.highd120.list.SoundList;
@@ -68,6 +69,7 @@ public class BotaniaExMain {
         AchievementsList.init();
         NetworkHandler.init();
         FluidList.init();
+        GuiEditer.initData();
 
         GameRegistry.registerTileEntity(TileStand.class, MOD_ID + ".stand");
         GameRegistry.registerTileEntity(TileInjection.class, MOD_ID + ".injection");

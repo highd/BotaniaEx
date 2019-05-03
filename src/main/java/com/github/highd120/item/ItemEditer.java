@@ -1,29 +1,24 @@
 package com.github.highd120.item;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import com.github.highd120.BotaniaExMain;
+import com.github.highd120.gui.BasicInventory;
 import com.github.highd120.util.item.ItemRegister;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 
 @ItemRegister(name = "creative_editor")
 public class ItemEditer extends ItemBase {
@@ -38,41 +33,7 @@ public class ItemEditer extends ItemBase {
     @Nonnull
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound oldCapNbt) {
-        return new InvProvider();
-    }
-
-    private static class InvProvider implements ICapabilitySerializable<NBTBase> {
-
-        private final IItemHandler inv = new ItemStackHandler(16) {
-            @Override
-            public ItemStack insertItem(int slot, ItemStack toInsert, boolean simulate) {
-                return super.insertItem(slot, toInsert, simulate);
-            }
-        };
-
-        @Override
-        public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
-            return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
-        }
-
-        @Override
-        public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-            if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-                return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inv);
-            } else {
-                return null;
-            }
-        }
-
-        @Override
-        public NBTBase serializeNBT() {
-            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.writeNBT(inv, null);
-        }
-
-        @Override
-        public void deserializeNBT(NBTBase nbt) {
-            CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(inv, null, nbt);
-        }
+        return new BasicInventory(2);
     }
 
     @Override

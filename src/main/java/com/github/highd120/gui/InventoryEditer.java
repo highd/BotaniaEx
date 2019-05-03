@@ -19,6 +19,10 @@ public class InventoryEditer implements IItemHandlerModifiable {
                 .getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
     }
 
+    public void setSize(int size) {
+
+    }
+
     public ItemStack getCalledItem() {
         return calledItem;
     }

@@ -17,6 +17,8 @@ public class ContainerEditer extends Container {
 
     private InventoryEditer editerInventory;
 
+    private int slotCount = 16;
+
     @GuiField
     private EntityPlayer player;
 
@@ -38,25 +40,22 @@ public class ContainerEditer extends Container {
     }
 
     private void initCommon(InventoryPlayer playerInv, InventoryEditer editerInventory) {
-        for (int i = 0; i < 2; ++i) {
-            for (int j = 0; j < 8; ++j) {
-                int k = j + i * 8;
-                addSlotToContainer(
-                        new SlotItemHandler(editerInventory, k, 17 + j * 18, 26 + i * 18));
-            }
+        slotCount = editerInventory.getSlots();
+        for (int i = 0; i < slotCount; ++i) {
+            addSlotToContainer(new SlotItemHandler(editerInventory, i, 9, 26 + i * 18));
         }
 
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
-                addSlotToContainer(new Slot(playerInv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+                addSlotToContainer(new Slot(playerInv, j + i * 9 + 9, 8 + j * 18, 154 + i * 18));
             }
         }
 
         for (int i = 0; i < 9; ++i) {
             if (playerInv.getStackInSlot(i) == editerInventory.getCalledItem()) {
-                addSlotToContainer(new SlotLocked(playerInv, i, 8 + i * 18, 142));
+                addSlotToContainer(new SlotLocked(playerInv, i, 8 + i * 18, 212));
             } else {
-                addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 142));
+                addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 212));
             }
         }
     }
@@ -77,11 +76,11 @@ public class ContainerEditer extends Container {
             itemstack = itemstack1.copy();
 
             if (slotIndex < 16) {
-                if (!mergeItemStack(itemstack1, 16, 52, true)) {
+                if (!mergeItemStack(itemstack1, slotCount, slotCount + 36, true)) {
                     return null;
                 }
             } else {
-                if (!mergeItemStack(itemstack1, 0, 16, true)) {
+                if (!mergeItemStack(itemstack1, 0, slotCount, true)) {
                     return null;
                 }
             }
