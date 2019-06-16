@@ -47,7 +47,6 @@ public class GuiEditer extends GuiContainer {
     private List<NumberTextField> textFieldList = new ArrayList<>();
     private List<ElementDataProxy> dataList = new ArrayList<>();
     private List<TextData> textList = new ArrayList<>();
-    private InventoryEditer editerInventory;
     private Item oldItem;
 
     private static Map<Item, EditerData> dataMap = new HashMap<>();
@@ -65,7 +64,7 @@ public class GuiEditer extends GuiContainer {
     }
 
     private Optional<EditerData> getData() {
-        ItemStack main = editerInventory.getStackInSlot(0);
+        ItemStack main = inventorySlots.getSlot(0).getStack();
         if (main != null && dataMap.containsKey(main.getItem())) {
             return Optional.of(dataMap.get(main.getItem()));
         }
@@ -81,7 +80,8 @@ public class GuiEditer extends GuiContainer {
      */
     public void init() {
         InventoryPlayer playerInv = player.inventory;
-        editerInventory = new InventoryEditer(player.getHeldItem(EnumHand.MAIN_HAND));
+        InventoryEditer editerInventory = new InventoryEditer(
+                player.getHeldItem(EnumHand.MAIN_HAND));
         inventorySlots = new ContainerEditer(playerInv, editerInventory);
     }
 
@@ -112,7 +112,6 @@ public class GuiEditer extends GuiContainer {
     public void initGui() {
         super.initGui();
         guiTop = 0;
-        buttonList.add(new CraftButton(0, guiLeft + 26, guiTop + 130));
     }
 
     private void changeData() {
@@ -125,13 +124,14 @@ public class GuiEditer extends GuiContainer {
             for (int i = 0; i < list.size(); i++) {
                 addElement(list.get(i), i);
             }
+            buttonList.add(new CraftButton(0, guiLeft + 26, guiTop + 130));
         });
 
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        ItemStack main = editerInventory.getStackInSlot(0);
+        ItemStack main = inventorySlots.getSlot(0).getStack();
         if (main == null ? oldItem != null : main.getItem() != oldItem) {
             changeData();
         }
@@ -176,18 +176,22 @@ public class GuiEditer extends GuiContainer {
             if (!flag) {
                 return false;
             }
-            ItemStack main = editerInventory.getStackInSlot(0);
+            ItemStack main = inventorySlots.getSlot(0).getStack();
             EditerData data = getData().orElse(null);
             if (main != null && data != null) {
-                NBTTagCompound compound = NbtTagUtil.getCompound(main);
+                ItemStack result = main.copy();
+                NBTTagCompound compound = NbtTagUtil.getCompound(result);
                 int slotCount = data.getInventoryNames().size();
                 for (int i = 0; i < slotCount; i++) {
                     ItemStack inner = inventorySlots.getSlot(i + 1).getStack();
-                    NbtTagUtil.setInnerItem(data.getInventoryNames().get(i), main, inner);
+                    NbtTagUtil.setInnerItem(data.getInventoryNames().get(i), result, inner);
                 }
                 dataList.forEach(proxy -> {
                     proxy.writeNbt(compound);
                 });
+                inventorySlots.putStackInSlot(0, result);
+                inventorySlots.transferStackInSlot(player, 0);
+                inventorySlots.putStackInSlot(0, main);
             }
             return flag;
         }

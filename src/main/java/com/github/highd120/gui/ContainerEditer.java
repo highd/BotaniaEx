@@ -75,7 +75,7 @@ public class ContainerEditer extends Container {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (slotIndex < 16) {
+            if (slotIndex < slotCount) {
                 if (!mergeItemStack(itemstack1, slotCount, slotCount + 36, true)) {
                     return null;
                 }

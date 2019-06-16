@@ -127,5 +127,10 @@ public class InjectionRecipe {
                 new ItemStack(ModItems.manaResource, 1, 14),
                 new ItemStack(ModItems.manaResource, 1, 12),
                 new ItemStack(ModItems.manaResource, 1, 15)));
+
+        recipes.add(InjectionRemoveTag.createRecipe(ItemShotSword.HOMING_TAG, 400,
+                ItemManager.getItemStack(ItemShotSword.class),
+                ItemManager.getItemStack(ItemInjectionResource.class, 0),
+                new ItemStack(ModItems.manaResource, 1, 15)));
     }
 }
