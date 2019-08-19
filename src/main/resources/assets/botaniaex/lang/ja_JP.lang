@@ -15,6 +15,8 @@ botaniaex.fire=火
 botaniaex.dirt=土
 botaniaex.water=水
 botaniaex:injection=ボタニアインジェクション
+botaniaex.injection.remove=破壊
+botaniaex.injection.horming=追跡
 
 tile.botania:flower.bindsword.name=バイジオン
 tile.botania:flower.bindsword.reference=Test Messeage.

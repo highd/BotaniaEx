@@ -11,6 +11,7 @@ import com.github.highd120.util.NbtTagUtil;
 import com.github.highd120.util.item.ItemRegister;
 import com.google.common.base.Predicate;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -92,7 +93,7 @@ public class ItemShotSword extends ItemBase implements IManaUsingItem, ICraftAch
             tooltip.add(">" + inner.getDisplayName());
         }
         if (NbtTagUtil.getCompound(stack).hasKey(HOMING_TAG)) {
-            tooltip.add("HORMING");
+            tooltip.add(I18n.format("botaniaex.injection.horming"));
         }
     }
 

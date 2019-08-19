@@ -7,6 +7,7 @@ import com.github.highd120.util.NbtTagUtil;
 import com.github.highd120.util.item.ItemRegister;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -40,11 +41,8 @@ public class ItemExtraCobbleRod extends ItemCobbleRod implements HasInit {
             boolean advanced) {
         NBTTagCompound child = NbtTagUtil.getCompound(Constant.SHOT_SWORD_TAG, stack);
         ItemStack inner = ItemStack.loadItemStackFromNBT(child);
-        if (inner != null) {
-            tooltip.add(">" + inner.getDisplayName());
-        }
         if (NbtTagUtil.getCompound(stack).hasKey("remove")) {
-            tooltip.add("REMOVE");
+            tooltip.add(I18n.format("botaniaex.injection.remove"));
         }
     }
 
