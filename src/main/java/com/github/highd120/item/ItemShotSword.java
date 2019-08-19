@@ -6,12 +6,12 @@ import com.github.highd120.achievement.AchievementsList;
 import com.github.highd120.entity.EntitySword;
 import com.github.highd120.util.Constant;
 import com.github.highd120.util.EntityUtil;
+import com.github.highd120.util.InjectionUtil;
 import com.github.highd120.util.MathUtil;
 import com.github.highd120.util.NbtTagUtil;
 import com.github.highd120.util.item.ItemRegister;
 import com.google.common.base.Predicate;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -92,9 +92,7 @@ public class ItemShotSword extends ItemBase implements IManaUsingItem, ICraftAch
         if (inner != null) {
             tooltip.add(">" + inner.getDisplayName());
         }
-        if (NbtTagUtil.getCompound(stack).hasKey(HOMING_TAG)) {
-            tooltip.add(I18n.format("botaniaex.injection.horming"));
-        }
+        InjectionUtil.addInformation(stack, tooltip, new String[] { HOMING_TAG });
     }
 
     @Override
