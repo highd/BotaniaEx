@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.github.highd120.BotaniaExMain;
+import com.github.highd120.item.HasInit;
 import com.github.highd120.item.HasRegisterModel;
-import com.github.highd120.item.ItemBase;
 import com.github.highd120.util.ClassUtil;
 import com.github.highd120.util.block.BlockManager;
 
@@ -38,11 +38,14 @@ public class ItemManager {
                 Item item = (Item) obj;
                 item.setRegistryName(new ResourceLocation(BotaniaExMain.MOD_ID, name));
                 item.setUnlocalizedName(BotaniaExMain.MOD_ID + "." + name);
+                if (item instanceof HasInit) {
+                    ((HasInit) item).init();
+                }
                 GameRegistry.register(item);
                 itemMap.put(clazz, item);
                 if (isClient) {
                     if (item instanceof HasRegisterModel) {
-                        ((ItemBase) item).registerModel();
+                        ((HasRegisterModel) item).registerModel();
                     } else {
                         ModelLoader.setCustomModelResourceLocation(item, 0,
                                 new ModelResourceLocation(item.getRegistryName(), "inventory"));
