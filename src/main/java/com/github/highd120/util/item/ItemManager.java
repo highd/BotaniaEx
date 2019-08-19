@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.github.highd120.BotaniaExMain;
+import com.github.highd120.item.HasRegisterModel;
 import com.github.highd120.item.ItemBase;
 import com.github.highd120.util.ClassUtil;
 import com.github.highd120.util.block.BlockManager;
@@ -40,7 +41,7 @@ public class ItemManager {
                 GameRegistry.register(item);
                 itemMap.put(clazz, item);
                 if (isClient) {
-                    if (item instanceof ItemBase) {
+                    if (item instanceof HasRegisterModel) {
                         ((ItemBase) item).registerModel();
                     } else {
                         ModelLoader.setCustomModelResourceLocation(item, 0,

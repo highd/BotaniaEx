@@ -7,7 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.botania.common.core.BotaniaCreativeTab;
 
-public class ItemBase extends Item {
+public class ItemBase extends Item implements HasRegisterModel {
     public ItemBase() {
         setCreativeTab(BotaniaCreativeTab.INSTANCE);
     }
