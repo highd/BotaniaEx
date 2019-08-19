@@ -13,9 +13,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class InjectionAddTag extends InjectionRecipeData {
-    private String tag;
-    private Type type;
-    private int minLv;
+    protected String tag;
+    protected Type type;
+    protected int minLv;
 
     public enum Type {
         OVER, LANK

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.github.highd120.block.injection.InjectionRecipeData.Input;
 import com.github.highd120.item.ItemExtra;
+import com.github.highd120.item.ItemExtraCobbleRod;
 import com.github.highd120.item.ItemInjectionResource;
 import com.github.highd120.item.ItemRune;
 import com.github.highd120.item.ItemShotSword;
@@ -131,6 +132,15 @@ public class InjectionRecipe {
         recipes.add(InjectionRemoveTag.createRecipe(ItemShotSword.HOMING_TAG, 400,
                 ItemManager.getItemStack(ItemShotSword.class),
                 ItemManager.getItemStack(ItemInjectionResource.class, 0),
+                new ItemStack(ModItems.manaResource, 1, 15)));
+
+        recipes.add(InjectionExtraAddTag.createRecipe("remove", 40000,
+                InjectionAddTag.Type.OVER, 1,
+                new ItemStack(ModItems.cobbleRod),
+                ItemManager.getItemStack(ItemExtraCobbleRod.class, 0),
+                new ItemStack(Items.ENDER_EYE),
+                new ItemStack(ModItems.manaResource, 1, 14),
+                new ItemStack(ModItems.manaResource, 1, 12),
                 new ItemStack(ModItems.manaResource, 1, 15)));
     }
 }
